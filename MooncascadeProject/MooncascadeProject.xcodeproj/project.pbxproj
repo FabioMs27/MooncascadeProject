@@ -19,6 +19,10 @@
 		79C09DDA25E57EB90045CF6C /* Employee.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79C09DD925E57EB80045CF6C /* Employee.swift */; };
 		79C09DE825E585260045CF6C /* EmployeeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79C09DE725E585260045CF6C /* EmployeeCell.swift */; };
 		79C09DEE25E587590045CF6C /* EmployeeDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79C09DED25E587590045CF6C /* EmployeeDataSource.swift */; };
+		79C09DF525E590A50045CF6C /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79C09DF425E590A50045CF6C /* NetworkManager.swift */; };
+		79C09DFD25E5911F0045CF6C /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79C09DFC25E5911F0045CF6C /* NetworkError.swift */; };
+		79C09E0225E591290045CF6C /* URLPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79C09E0125E591290045CF6C /* URLPath.swift */; };
+		79C09E0725E593760045CF6C /* URLSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79C09E0625E593760045CF6C /* URLSession.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +61,10 @@
 		79C09DD925E57EB80045CF6C /* Employee.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Employee.swift; sourceTree = "<group>"; };
 		79C09DE725E585260045CF6C /* EmployeeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeCell.swift; sourceTree = "<group>"; };
 		79C09DED25E587590045CF6C /* EmployeeDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeDataSource.swift; sourceTree = "<group>"; };
+		79C09DF425E590A50045CF6C /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		79C09DFC25E5911F0045CF6C /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
+		79C09E0125E591290045CF6C /* URLPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLPath.swift; sourceTree = "<group>"; };
+		79C09E0625E593760045CF6C /* URLSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSession.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,6 +116,8 @@
 			isa = PBXGroup;
 			children = (
 				79C09DD625E57D480045CF6C /* App */,
+				79C09DF225E590620045CF6C /* Network */,
+				79C09DF325E5906C0045CF6C /* Helper */,
 				79C09DD825E57EA10045CF6C /* Model */,
 				79C09DD725E57D540045CF6C /* View */,
 				79C09DEC25E5873A0045CF6C /* ViewModel */,
@@ -170,6 +180,24 @@
 				79C09DED25E587590045CF6C /* EmployeeDataSource.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		79C09DF225E590620045CF6C /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				79C09DF425E590A50045CF6C /* NetworkManager.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		79C09DF325E5906C0045CF6C /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				79C09DFC25E5911F0045CF6C /* NetworkError.swift */,
+				79C09E0125E591290045CF6C /* URLPath.swift */,
+				79C09E0625E593760045CF6C /* URLSession.swift */,
+			);
+			path = Helper;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -304,10 +332,14 @@
 			files = (
 				79C09DA525E57D020045CF6C /* ListViewController.swift in Sources */,
 				79C09DA125E57D020045CF6C /* AppDelegate.swift in Sources */,
+				79C09E0725E593760045CF6C /* URLSession.swift in Sources */,
 				79C09DDA25E57EB90045CF6C /* Employee.swift in Sources */,
 				79C09DE825E585260045CF6C /* EmployeeCell.swift in Sources */,
+				79C09DF525E590A50045CF6C /* NetworkManager.swift in Sources */,
 				79C09DA325E57D020045CF6C /* SceneDelegate.swift in Sources */,
+				79C09DFD25E5911F0045CF6C /* NetworkError.swift in Sources */,
 				79C09DAB25E57D020045CF6C /* MooncascadeProject.xcdatamodeld in Sources */,
+				79C09E0225E591290045CF6C /* URLPath.swift in Sources */,
 				79C09DEE25E587590045CF6C /* EmployeeDataSource.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
