@@ -9,14 +9,16 @@
 /* Begin PBXBuildFile section */
 		79C09DA125E57D020045CF6C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79C09DA025E57D020045CF6C /* AppDelegate.swift */; };
 		79C09DA325E57D020045CF6C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79C09DA225E57D020045CF6C /* SceneDelegate.swift */; };
-		79C09DA525E57D020045CF6C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79C09DA425E57D020045CF6C /* ViewController.swift */; };
+		79C09DA525E57D020045CF6C /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79C09DA425E57D020045CF6C /* ListViewController.swift */; };
 		79C09DA825E57D020045CF6C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 79C09DA625E57D020045CF6C /* Main.storyboard */; };
 		79C09DAB25E57D020045CF6C /* MooncascadeProject.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 79C09DA925E57D020045CF6C /* MooncascadeProject.xcdatamodeld */; };
 		79C09DAD25E57D040045CF6C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 79C09DAC25E57D040045CF6C /* Assets.xcassets */; };
 		79C09DB025E57D040045CF6C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 79C09DAE25E57D040045CF6C /* LaunchScreen.storyboard */; };
 		79C09DBB25E57D040045CF6C /* MooncascadeProjectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79C09DBA25E57D040045CF6C /* MooncascadeProjectTests.swift */; };
 		79C09DC625E57D040045CF6C /* MooncascadeProjectUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79C09DC525E57D040045CF6C /* MooncascadeProjectUITests.swift */; };
-		79C09DDA25E57EB90045CF6C /* Employees.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79C09DD925E57EB80045CF6C /* Employees.swift */; };
+		79C09DDA25E57EB90045CF6C /* Employee.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79C09DD925E57EB80045CF6C /* Employee.swift */; };
+		79C09DE825E585260045CF6C /* EmployeeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79C09DE725E585260045CF6C /* EmployeeCell.swift */; };
+		79C09DEE25E587590045CF6C /* EmployeeDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79C09DED25E587590045CF6C /* EmployeeDataSource.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,7 +42,7 @@
 		79C09D9D25E57D020045CF6C /* MooncascadeProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MooncascadeProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		79C09DA025E57D020045CF6C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		79C09DA225E57D020045CF6C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		79C09DA425E57D020045CF6C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		79C09DA425E57D020045CF6C /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
 		79C09DA725E57D020045CF6C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		79C09DAA25E57D020045CF6C /* MooncascadeProject.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MooncascadeProject.xcdatamodel; sourceTree = "<group>"; };
 		79C09DAC25E57D040045CF6C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -52,7 +54,9 @@
 		79C09DC125E57D040045CF6C /* MooncascadeProjectUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MooncascadeProjectUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		79C09DC525E57D040045CF6C /* MooncascadeProjectUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MooncascadeProjectUITests.swift; sourceTree = "<group>"; };
 		79C09DC725E57D040045CF6C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		79C09DD925E57EB80045CF6C /* Employees.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Employees.swift; sourceTree = "<group>"; };
+		79C09DD925E57EB80045CF6C /* Employee.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Employee.swift; sourceTree = "<group>"; };
+		79C09DE725E585260045CF6C /* EmployeeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeCell.swift; sourceTree = "<group>"; };
+		79C09DED25E587590045CF6C /* EmployeeDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeDataSource.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,8 +108,9 @@
 			isa = PBXGroup;
 			children = (
 				79C09DD625E57D480045CF6C /* App */,
-				79C09DD725E57D540045CF6C /* View */,
 				79C09DD825E57EA10045CF6C /* Model */,
+				79C09DD725E57D540045CF6C /* View */,
+				79C09DEC25E5873A0045CF6C /* ViewModel */,
 				79C09DAC25E57D040045CF6C /* Assets.xcassets */,
 				79C09DAE25E57D040045CF6C /* LaunchScreen.storyboard */,
 				79C09DB125E57D040045CF6C /* Info.plist */,
@@ -145,7 +150,8 @@
 			isa = PBXGroup;
 			children = (
 				79C09DA625E57D020045CF6C /* Main.storyboard */,
-				79C09DA425E57D020045CF6C /* ViewController.swift */,
+				79C09DA425E57D020045CF6C /* ListViewController.swift */,
+				79C09DE725E585260045CF6C /* EmployeeCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -153,9 +159,17 @@
 		79C09DD825E57EA10045CF6C /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				79C09DD925E57EB80045CF6C /* Employees.swift */,
+				79C09DD925E57EB80045CF6C /* Employee.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		79C09DEC25E5873A0045CF6C /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				79C09DED25E587590045CF6C /* EmployeeDataSource.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -288,11 +302,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				79C09DA525E57D020045CF6C /* ViewController.swift in Sources */,
+				79C09DA525E57D020045CF6C /* ListViewController.swift in Sources */,
 				79C09DA125E57D020045CF6C /* AppDelegate.swift in Sources */,
-				79C09DDA25E57EB90045CF6C /* Employees.swift in Sources */,
+				79C09DDA25E57EB90045CF6C /* Employee.swift in Sources */,
+				79C09DE825E585260045CF6C /* EmployeeCell.swift in Sources */,
 				79C09DA325E57D020045CF6C /* SceneDelegate.swift in Sources */,
 				79C09DAB25E57D020045CF6C /* MooncascadeProject.xcdatamodeld in Sources */,
+				79C09DEE25E587590045CF6C /* EmployeeDataSource.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

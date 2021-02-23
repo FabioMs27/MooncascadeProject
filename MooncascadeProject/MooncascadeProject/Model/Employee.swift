@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Employees {
+struct Employee {
     let firstName: String
     let lastName: String
     var fullName: String { firstName + lastName }
@@ -16,17 +16,21 @@ struct Employees {
     let projects: [String]
 }
 
-extension Employees: Comparable {
-    static func == (lhs: Employees, rhs: Employees) -> Bool {
+extension Employee: Comparable, Hashable {
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(fullName.hashValue)
+    }
+    
+    static func == (lhs: Employee, rhs: Employee) -> Bool {
         return lhs.fullName == rhs.fullName
     }
     
-    static func < (lhs: Employees, rhs: Employees) -> Bool {
+    static func < (lhs: Employee, rhs: Employee) -> Bool {
         return lhs.lastName < rhs.lastName
     }
 }
 
-extension Employees: Decodable {
+extension Employee: Decodable {
     enum CodingKeys: String, CodingKey {
         case firstName      = "fname"
         case lastName       = "lname"
