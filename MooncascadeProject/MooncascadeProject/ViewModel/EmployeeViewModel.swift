@@ -14,7 +14,7 @@ class EmployeeViewModel {
     func fetchEmployees() {
         employees.removeAll()
         fetchFrom(URL: .tallinn)
-//        fetchFrom(URL: .tartu)
+        fetchFrom(URL: .tartu)
     }
     
     private func fetchFrom(URL path: URLPath) {

@@ -24,6 +24,7 @@
 		79C09E0225E591290045CF6C /* URLPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79C09E0125E591290045CF6C /* URLPath.swift */; };
 		79C09E0725E593760045CF6C /* URLSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79C09E0625E593760045CF6C /* URLSession.swift */; };
 		79C09E0C25E599B80045CF6C /* EmployeeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79C09E0B25E599B80045CF6C /* EmployeeViewModel.swift */; };
+		79C09E1125E63FBA0045CF6C /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79C09E1025E63FBA0045CF6C /* DetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +68,7 @@
 		79C09E0125E591290045CF6C /* URLPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLPath.swift; sourceTree = "<group>"; };
 		79C09E0625E593760045CF6C /* URLSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSession.swift; sourceTree = "<group>"; };
 		79C09E0B25E599B80045CF6C /* EmployeeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeViewModel.swift; sourceTree = "<group>"; };
+		79C09E1025E63FBA0045CF6C /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -164,6 +166,7 @@
 				79C09DA625E57D020045CF6C /* Main.storyboard */,
 				79C09DA425E57D020045CF6C /* ListViewController.swift */,
 				79C09DE725E585260045CF6C /* EmployeeCell.swift */,
+				79C09E1025E63FBA0045CF6C /* DetailViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -333,6 +336,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				79C09E1125E63FBA0045CF6C /* DetailViewController.swift in Sources */,
 				79C09DA525E57D020045CF6C /* ListViewController.swift in Sources */,
 				79C09DA125E57D020045CF6C /* AppDelegate.swift in Sources */,
 				79C09E0725E593760045CF6C /* URLSession.swift in Sources */,

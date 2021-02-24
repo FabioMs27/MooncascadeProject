@@ -14,12 +14,31 @@ class ListViewController: UIViewController {
     private let viewModel = EmployeeViewModel()
     private let dataSource = EmployeeDataSource()
     private var cancellables = Set<AnyCancellable>()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.dataSource = dataSource
         bindViewModel()
         viewModel.fetchEmployees()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        if let indexPath = tableView.indexPathForSelectedRow {
+            tableView.deselectRow(at: indexPath, animated: true)
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let indexPath = tableView.indexPathForSelectedRow,
+              let employee = dataSource.employee(From: indexPath),
+              let destination = segue.destination as? DetailViewController else {
+            return
+        }
+        destination.fullname = employee.fullName
+        destination.email = employee.contactDetails.email
+        destination.phoneNumber = employee.contactDetails.phone
+        destination.position = employee.position
+        destination.projects = employee.projects ?? []
     }
     
     private func bindViewModel() {
@@ -28,6 +47,6 @@ class ListViewController: UIViewController {
             self?.tableView.reloadData()
         }.store(in: &cancellables)
     }
-
+    
 }
 

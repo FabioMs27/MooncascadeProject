@@ -10,7 +10,7 @@ import Foundation
 struct Employee {
     let firstName: String
     let lastName: String
-    var fullName: String { "\(firstName) \(lastName)" }
+    var fullName: String { "\(lastName) \(firstName)" }
     let contactDetails: ContactDetails
     let position: String
     let projects: [String]?

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="nL7-KT-kUo">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
@@ -8,7 +8,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--List View Controller-->
+        <!--Employees-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ListViewController" customModule="MooncascadeProject" customModuleProvider="target" sceneMemberID="viewController">
@@ -17,32 +17,40 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="5UK-RJ-AiU">
-                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="EmployeeCell" id="Hgs-lb-umy" customClass="EmployeeCell" customModule="MooncascadeProject" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
+                                        <rect key="frame" x="0.0" y="28" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Hgs-lb-umy" id="j81-Fe-SGN">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fabio Maciel de Sousa" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K4b-7f-eUJ">
-                                                    <rect key="frame" x="20" y="11" width="170" height="21"/>
+                                                    <rect key="frame" x="20" y="11" width="170" height="21.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AzC-aS-kwJ">
+                                                    <rect key="frame" x="339" y="6" width="55" height="30.5"/>
+                                                    <state key="normal" title="Contact"/>
+                                                </button>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="bottomMargin" secondItem="K4b-7f-eUJ" secondAttribute="bottom" constant="0.5" id="Eeb-em-Bre"/>
-                                                <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="K4b-7f-eUJ" secondAttribute="trailing" id="fca-8d-wF3"/>
-                                                <constraint firstItem="K4b-7f-eUJ" firstAttribute="leading" secondItem="j81-Fe-SGN" secondAttribute="leadingMargin" id="mgQ-3X-t76"/>
-                                                <constraint firstItem="K4b-7f-eUJ" firstAttribute="top" secondItem="j81-Fe-SGN" secondAttribute="topMargin" id="zel-gj-cQo"/>
+                                                <constraint firstItem="AzC-aS-kwJ" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="K4b-7f-eUJ" secondAttribute="trailing" constant="8" id="IR5-hO-tcR"/>
+                                                <constraint firstAttribute="bottom" secondItem="AzC-aS-kwJ" secondAttribute="bottom" constant="7.5" id="ITv-Qf-T27"/>
+                                                <constraint firstItem="K4b-7f-eUJ" firstAttribute="top" secondItem="j81-Fe-SGN" secondAttribute="topMargin" id="SOx-ZC-rqa"/>
+                                                <constraint firstItem="AzC-aS-kwJ" firstAttribute="top" secondItem="j81-Fe-SGN" secondAttribute="top" constant="6" id="WjH-09-IUN"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="K4b-7f-eUJ" secondAttribute="bottom" constant="0.5" id="ZvN-0c-H4i"/>
+                                                <constraint firstItem="K4b-7f-eUJ" firstAttribute="leading" secondItem="j81-Fe-SGN" secondAttribute="leadingMargin" id="rHV-8T-6Uc"/>
+                                                <constraint firstAttribute="trailing" secondItem="AzC-aS-kwJ" secondAttribute="trailing" constant="20" symbolic="YES" id="yuQ-mf-teR"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="nameLabel" destination="K4b-7f-eUJ" id="Ulp-mh-hlM"/>
+                                            <segue destination="ny1-Rf-VVn" kind="show" id="UKZ-Ey-yaP"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -57,13 +65,97 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="5UK-RJ-AiU" secondAttribute="trailing" id="rVu-KL-Xg9"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="Employees" id="axG-NK-ihd"/>
                     <connections>
                         <outlet property="tableView" destination="5UK-RJ-AiU" id="y0f-g2-Dzh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-201" y="84"/>
+            <point key="canvasLocation" x="708.69565217391312" y="83.705357142857139"/>
+        </scene>
+        <!--Detail View Controller-->
+        <scene sceneID="sLE-Pq-v5q">
+            <objects>
+                <viewController id="ny1-Rf-VVn" customClass="DetailViewController" customModule="MooncascadeProject" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="S57-Ig-fv2">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="projects: Pommo,Clash Dash,Shadow Fear" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nrD-t4-nK0">
+                                <rect key="frame" x="57" y="516" width="322" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j7N-x4-KgG">
+                                <rect key="frame" x="171" y="832" width="94" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Open contact"/>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Fabio Maciel de Sousa" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0cZ-0K-SwJ">
+                                <rect key="frame" x="57" y="279" width="170" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="fabiomsousa27@gmail.com" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="twO-wG-4J9">
+                                <rect key="frame" x="57" y="344" width="210" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="+55 (61) 99822-2705" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uNx-a3-Q7X">
+                                <rect key="frame" x="57" y="393" width="167" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="iOS Developer" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HLv-Oi-m8k">
+                                <rect key="frame" x="57" y="460" width="109" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="cLA-cp-LEN"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="1JT-89-fhu"/>
+                    <connections>
+                        <outlet property="emailLabel" destination="twO-wG-4J9" id="eLS-OI-ikY"/>
+                        <outlet property="fullNameLabel" destination="0cZ-0K-SwJ" id="gte-3g-5Pa"/>
+                        <outlet property="phoneNumberLabel" destination="uNx-a3-Q7X" id="aNa-yy-4kK"/>
+                        <outlet property="positionLabel" destination="HLv-Oi-m8k" id="8Br-F4-2qJ"/>
+                        <outlet property="projectsLabel" destination="nrD-t4-nK0" id="Mwp-D1-lSk"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="suS-hu-79U" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1534.7826086956522" y="83.705357142857139"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="rfu-Cq-WvN">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="nL7-KT-kUo" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="jdI-T1-IS5">
+                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="IGA-57-db9"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="oi4-5b-fbJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-201.44927536231884" y="83.705357142857139"/>
         </scene>
     </scenes>
     <resources>
