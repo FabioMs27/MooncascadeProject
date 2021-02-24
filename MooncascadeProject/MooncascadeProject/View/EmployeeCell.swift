@@ -10,9 +10,13 @@ import UIKit
 class EmployeeCell: UITableViewCell {
 
     @IBOutlet private weak var nameLabel: UILabel!
+    @IBOutlet private weak var contactButton: UIButton!
     
     var name = String() {
         willSet { nameLabel.text = newValue }
+    }
+    var hasContact = false {
+        willSet { contactButton.isHidden = !newValue }
     }
     
     override func awakeFromNib() {

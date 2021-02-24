@@ -57,6 +57,7 @@ extension EmployeeDataSource: UITableViewDataSource {
             fatalError("Employee cell isn't registered")
         }
         cell.name = employee.fullName
+        cell.hasContact = employee.contact == nil ? false : true
         return cell
     }
 }

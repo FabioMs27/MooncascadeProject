@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import ContactsUI
 
 struct Employee {
     let firstName: String
@@ -14,6 +15,7 @@ struct Employee {
     let contactDetails: ContactDetails
     let position: String
     let projects: [String]?
+    var contact: CNContact?
 }
 
 extension Employee: Comparable, Hashable {
@@ -23,6 +25,10 @@ extension Employee: Comparable, Hashable {
     
     static func == (lhs: Employee, rhs: Employee) -> Bool {
         return lhs.fullName == rhs.fullName
+    }
+    
+    static func == (lhs: Employee, rhs: CNContact) -> Bool {
+        return lhs.fullName.insensitiveCaseFormat == rhs.fullName.insensitiveCaseFormat
     }
     
     static func < (lhs: Employee, rhs: Employee) -> Bool {

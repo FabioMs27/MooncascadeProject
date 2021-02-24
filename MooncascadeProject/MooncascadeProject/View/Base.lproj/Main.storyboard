@@ -36,6 +36,9 @@
                                                 <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AzC-aS-kwJ">
                                                     <rect key="frame" x="339" y="6" width="55" height="30.5"/>
                                                     <state key="normal" title="Contact"/>
+                                                    <connections>
+                                                        <action selector="showContactView:" destination="BYZ-38-t0r" eventType="touchUpInside" id="aWh-vj-peV"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <constraints>
@@ -49,6 +52,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="contactButton" destination="AzC-aS-kwJ" id="IJ6-f3-shJ"/>
                                             <outlet property="nameLabel" destination="K4b-7f-eUJ" id="Ulp-mh-hlM"/>
                                             <segue destination="ny1-Rf-VVn" kind="show" id="UKZ-Ey-yaP"/>
                                         </connections>
@@ -82,18 +86,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="projects: Pommo,Clash Dash,Shadow Fear" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nrD-t4-nK0">
-                                <rect key="frame" x="57" y="516" width="322" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j7N-x4-KgG">
-                                <rect key="frame" x="171" y="832" width="94" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Open contact"/>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Fabio Maciel de Sousa" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0cZ-0K-SwJ">
                                 <rect key="frame" x="57" y="279" width="170" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -122,12 +114,28 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="projects: Pommo,Clash Dash,Shadow Fear" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nrD-t4-nK0">
+                                <rect key="frame" x="57" y="516" width="322" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j7N-x4-KgG">
+                                <rect key="frame" x="160" y="545" width="94" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Open contact"/>
+                                <connections>
+                                    <action selector="showContactView:" destination="ny1-Rf-VVn" eventType="touchUpInside" id="IA2-FW-TmS"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="cLA-cp-LEN"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <navigationItem key="navigationItem" id="1JT-89-fhu"/>
                     <connections>
+                        <outlet property="contactButton" destination="j7N-x4-KgG" id="sAF-PB-Kde"/>
                         <outlet property="emailLabel" destination="twO-wG-4J9" id="eLS-OI-ikY"/>
                         <outlet property="fullNameLabel" destination="0cZ-0K-SwJ" id="gte-3g-5Pa"/>
                         <outlet property="phoneNumberLabel" destination="uNx-a3-Q7X" id="aNa-yy-4kK"/>

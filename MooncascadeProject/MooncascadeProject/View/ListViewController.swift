@@ -39,6 +39,7 @@ class ListViewController: UIViewController {
         destination.phoneNumber = employee.contactDetails.phone
         destination.position = employee.position
         destination.projects = employee.projects ?? []
+        destination.contact = employee.contact
     }
     
     private func bindViewModel() {
@@ -48,5 +49,15 @@ class ListViewController: UIViewController {
         }.store(in: &cancellables)
     }
     
+    @IBAction func showContactView(_ sender: UIButton) {
+        let touchPoint = sender.convert(CGPoint(x: 0, y: 0), to: self.tableView)
+        guard
+            let indexPath = tableView.indexPathForRow(at: touchPoint),
+            let employee = dataSource.employee(From: indexPath),
+            let contactViewController = employee.contact?.getContactView() else {
+            return
+        }
+        present(contactViewController, animated: true)
+    }
 }
 

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import ContactsUI
 
 class DetailViewController: UIViewController {
     
@@ -14,22 +15,30 @@ class DetailViewController: UIViewController {
     @IBOutlet private weak var phoneNumberLabel: UILabel!
     @IBOutlet private weak var positionLabel: UILabel!
     @IBOutlet private weak var projectsLabel: UILabel!
+    @IBOutlet weak var contactButton: UIButton!
     
     var fullname = String()
     var email = String()
     var phoneNumber: String?
     var position = String()
     var projects = [String]()
+    var contact: CNContact?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         fullNameLabel.text = fullname
         emailLabel.text = email
         phoneNumberLabel.text = phoneNumber ?? "No phone number registered."
         positionLabel.text = position
         let formattedProjects = projects.reduce(into: String(), { $0 += "\($01),\n" })
         projectsLabel.text = "Projects: \(formattedProjects)"
+        contactButton.isHidden = contact == nil ? true : false
     }
 
+    @IBAction func showContactView(_ sender: Any) {
+        guard let contactViewController = contact?.getContactView() else {
+            return
+        }
+        present(contactViewController, animated: true)
+    }
 }
