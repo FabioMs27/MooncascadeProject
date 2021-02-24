@@ -13,13 +13,11 @@ extension CNContact {
         "\(self.familyName) \(self.givenName)"
     }
     
-    func getContactView() -> UINavigationController {
+    func getContactView() -> CNContactViewController {
         let contactViewController = CNContactViewController(for: self)
         contactViewController.hidesBottomBarWhenPushed = true
         contactViewController.allowsActions = false
         contactViewController.allowsEditing = false
-        let navigationViewController = UINavigationController(rootViewController: contactViewController)
-
-        return navigationViewController
+        return contactViewController
     }
 }

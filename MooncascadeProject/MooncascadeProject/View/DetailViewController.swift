@@ -36,9 +36,10 @@ class DetailViewController: UIViewController {
     }
 
     @IBAction func showContactView(_ sender: Any) {
-        guard let contactViewController = contact?.getContactView() else {
+        guard let contactViewController = contact?.getContactView(),
+              let navigationController = self.navigationController else {
             return
         }
-        present(contactViewController, animated: true)
+        navigationController.pushViewController(contactViewController, animated: true)
     }
 }

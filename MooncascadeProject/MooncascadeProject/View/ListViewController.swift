@@ -54,10 +54,11 @@ class ListViewController: UIViewController {
         guard
             let indexPath = tableView.indexPathForRow(at: touchPoint),
             let employee = dataSource.employee(From: indexPath),
-            let contactViewController = employee.contact?.getContactView() else {
+            let contactViewController = employee.contact?.getContactView(),
+            let navigationController = self.navigationController else {
             return
         }
-        present(contactViewController, animated: true)
+        navigationController.pushViewController(contactViewController, animated: true)
     }
 }
 
