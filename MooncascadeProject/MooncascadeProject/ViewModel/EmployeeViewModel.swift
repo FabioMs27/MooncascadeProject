@@ -9,6 +9,7 @@ import Foundation
 
 class EmployeeViewModel {
     @Published var employees = [Employee]()
+    @Published var error: Error?
     private let networkManager = NetworkManager()
     private let contactManager = ContactManage()
     
@@ -25,7 +26,7 @@ class EmployeeViewModel {
                 self?.employees.append(contentsOf: wrapper.items ?? [])
                 self?.matchContacts()
             case .failure(let error):
-                print(error.localizedDescription)
+                self?.error = error
             }
         }
     }
@@ -43,7 +44,7 @@ class EmployeeViewModel {
                     }
                 }
             case .failure(let error):
-                print(error.localizedDescription)
+                self?.error = error
             }
         }
     }

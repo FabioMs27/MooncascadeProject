@@ -28,6 +28,7 @@
 		79C09E1625E649E00045CF6C /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79C09E1525E649E00045CF6C /* String.swift */; };
 		79C09E1B25E64A790045CF6C /* CNContact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79C09E1A25E64A790045CF6C /* CNContact.swift */; };
 		79C09E2025E64B320045CF6C /* ContactManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79C09E1F25E64B320045CF6C /* ContactManager.swift */; };
+		79C09E2625E6868D0045CF6C /* ContactError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79C09E2525E6868D0045CF6C /* ContactError.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,6 +76,7 @@
 		79C09E1525E649E00045CF6C /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		79C09E1A25E64A790045CF6C /* CNContact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CNContact.swift; sourceTree = "<group>"; };
 		79C09E1F25E64B320045CF6C /* ContactManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactManager.swift; sourceTree = "<group>"; };
+		79C09E2525E6868D0045CF6C /* ContactError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactError.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -205,7 +207,7 @@
 		79C09DF325E5906C0045CF6C /* Helper */ = {
 			isa = PBXGroup;
 			children = (
-				79C09DFC25E5911F0045CF6C /* NetworkError.swift */,
+				79C09E2425E6838F0045CF6C /* Error Handling */,
 				79C09E0125E591290045CF6C /* URLPath.swift */,
 				79C09E0625E593760045CF6C /* URLSession.swift */,
 				79C09E1525E649E00045CF6C /* String.swift */,
@@ -213,6 +215,15 @@
 				79C09E1F25E64B320045CF6C /* ContactManager.swift */,
 			);
 			path = Helper;
+			sourceTree = "<group>";
+		};
+		79C09E2425E6838F0045CF6C /* Error Handling */ = {
+			isa = PBXGroup;
+			children = (
+				79C09DFC25E5911F0045CF6C /* NetworkError.swift */,
+				79C09E2525E6868D0045CF6C /* ContactError.swift */,
+			);
+			path = "Error Handling";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -358,6 +369,7 @@
 				79C09DA325E57D020045CF6C /* SceneDelegate.swift in Sources */,
 				79C09DFD25E5911F0045CF6C /* NetworkError.swift in Sources */,
 				79C09DAB25E57D020045CF6C /* MooncascadeProject.xcdatamodeld in Sources */,
+				79C09E2625E6868D0045CF6C /* ContactError.swift in Sources */,
 				79C09E0225E591290045CF6C /* URLPath.swift in Sources */,
 				79C09E0C25E599B80045CF6C /* EmployeeViewModel.swift in Sources */,
 				79C09DEE25E587590045CF6C /* EmployeeDataSource.swift in Sources */,

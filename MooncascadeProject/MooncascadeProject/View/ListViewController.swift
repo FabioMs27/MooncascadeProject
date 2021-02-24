@@ -47,6 +47,26 @@ class ListViewController: UIViewController {
             self?.dataSource.update(Employees: employees)
             self?.tableView.reloadData()
         }.store(in: &cancellables)
+        
+        viewModel.$error.sink { [showAlert] error in
+            if let message = error?.localizedDescription {
+                showAlert("Error!", message)
+            }
+        }.store(in: &cancellables)
+    }
+    
+    private func showAlert(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+        let tryAgainAction = UIAlertAction(title: "Try again", style: .default) { [viewModel] _ in
+            viewModel.fetchEmployees()
+        }
+        
+        alert.addAction(tryAgainAction)
+        alert.addAction(cancelAction)
+        
+        present(alert, animated: true)
     }
     
     @IBAction func showContactView(_ sender: UIButton) {
