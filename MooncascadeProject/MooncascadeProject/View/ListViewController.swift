@@ -14,11 +14,15 @@ class ListViewController: UIViewController {
     private let viewModel = EmployeeViewModel()
     private let dataSource = EmployeeDataSource()
     private var cancellables = Set<AnyCancellable>()
+    private let refreshControl = UIRefreshControl()
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.dataSource = dataSource
         bindViewModel()
+        setupRefreshControl()
+        setupSearchBar()
         viewModel.fetchEmployees()
     }
     
@@ -42,15 +46,33 @@ class ListViewController: UIViewController {
         destination.contact = employee.contact
     }
     
+    private func setupRefreshControl() {
+        refreshControl.attributedTitle = NSAttributedString(string: "Refresh")
+        refreshControl.addTarget(self, action: #selector(self.refresh(_:)), for: .valueChanged)
+        refreshControl.beginRefreshing()
+        tableView.addSubview(refreshControl)
+    }
+    
+    private func setupSearchBar() {
+        let searchController = UISearchController(searchResultsController: nil)
+        searchController.searchBar.delegate = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = "Search Employees"
+        navigationItem.searchController = searchController
+        definesPresentationContext = true
+    }
+    
     private func bindViewModel() {
         viewModel.$employees.sink { [weak self] employees in
             self?.dataSource.update(Employees: employees)
             self?.tableView.reloadData()
+            self?.refreshControl.endRefreshing()
         }.store(in: &cancellables)
         
-        viewModel.$error.sink { [showAlert] error in
+        viewModel.$error.sink { [showAlert, refreshControl] error in
             if let message = error?.localizedDescription {
                 showAlert("Error!", message)
+                refreshControl.endRefreshing()
             }
         }.store(in: &cancellables)
     }
@@ -80,5 +102,15 @@ class ListViewController: UIViewController {
         }
         navigationController.pushViewController(contactViewController, animated: true)
     }
+    
+    @objc func refresh(_ sender: AnyObject) {
+        viewModel.fetchEmployees()
+    }
 }
 
+//MARK: - SearchBar Delegate
+extension ListViewController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        viewModel.filter(By: searchText)
+    }
+}

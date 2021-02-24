@@ -23,6 +23,14 @@ extension Employee: Comparable, Hashable {
         hasher.combine(fullName.hashValue)
     }
     
+    static func == (lhs: String, rhs: Employee) -> Bool {
+        let projects = rhs.projects?.reduce(into: String(), { $0 += $1 })
+        return rhs.fullName.insensitiveCaseFormat.contains(lhs)
+            || rhs.position.insensitiveCaseFormat.contains(lhs)
+            || rhs.contactDetails.email.insensitiveCaseFormat.contains(lhs)
+            || (projects ?? "").insensitiveCaseFormat.contains(lhs)
+    }
+    
     static func == (lhs: Employee, rhs: Employee) -> Bool {
         return lhs.fullName == rhs.fullName
     }
