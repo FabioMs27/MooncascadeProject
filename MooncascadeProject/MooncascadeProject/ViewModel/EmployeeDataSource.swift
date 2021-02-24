@@ -10,11 +10,12 @@ import UIKit
 class EmployeeDataSource: NSObject {
     private var sections = [String: [Employee]]()
     
-    var positions: [String] {
+    private var positions: [String] {
         sections.keys.sorted()
     }
     
-    init(employees: [Employee]) {
+    func update(Employees employees: [Employee]) {
+        sections.removeAll()
         let uniqueEmployees = employees
             .reduce(into: Set<Employee>(), { $0.insert($1) })
             .sorted(by: <)
@@ -31,6 +32,10 @@ class EmployeeDataSource: NSObject {
 }
 
 extension EmployeeDataSource: UITableViewDataSource {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return sections.count
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let position = positions[section]
         return sections[position]?.count ?? 0

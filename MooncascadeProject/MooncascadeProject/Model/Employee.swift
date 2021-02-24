@@ -10,10 +10,10 @@ import Foundation
 struct Employee {
     let firstName: String
     let lastName: String
-    var fullName: String { firstName + lastName }
+    var fullName: String { "\(firstName) \(lastName)" }
     let contactDetails: ContactDetails
     let position: String
-    let projects: [String]
+    let projects: [String]?
 }
 
 extension Employee: Comparable, Hashable {
@@ -49,5 +49,15 @@ extension ContactDetails: Decodable {
     enum CodingKeys: String, CodingKey {
         case email
         case phone
+    }
+}
+
+struct Wrapper<T: Decodable> {
+    let items: [T]?
+}
+
+extension Wrapper: Decodable {
+    enum CodingKeys: String, CodingKey {
+        case items = "employees"
     }
 }

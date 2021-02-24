@@ -12,6 +12,6 @@ enum URLPath: String {
     case tartu
     
     func getURL() -> URL? {
-        return URL(string: "​https://\(self.rawValue)-jobapp.aw.ee/employee_list")
+        return URL(string: "https://\(self.rawValue)-jobapp.aw.ee/employee_list/")
     }
 }

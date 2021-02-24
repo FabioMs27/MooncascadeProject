@@ -14,6 +14,7 @@ enum NetworkError: Error {
     case objectNotDecoded
     case connectionError
     case invalidURL
+    case unsupportedURL
 }
 
 extension NetworkError: LocalizedError {
@@ -25,6 +26,7 @@ extension NetworkError: LocalizedError {
         case .objectNotDecoded: return "The object couldn't be decoded."
         case .connectionError: return "Connection error."
         case .invalidURL: return "The URL provided is invalid."
+        case .unsupportedURL: return "The URL provided is unsupported."
         }
     }
 }

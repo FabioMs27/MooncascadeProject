@@ -23,6 +23,7 @@
 		79C09DFD25E5911F0045CF6C /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79C09DFC25E5911F0045CF6C /* NetworkError.swift */; };
 		79C09E0225E591290045CF6C /* URLPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79C09E0125E591290045CF6C /* URLPath.swift */; };
 		79C09E0725E593760045CF6C /* URLSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79C09E0625E593760045CF6C /* URLSession.swift */; };
+		79C09E0C25E599B80045CF6C /* EmployeeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79C09E0B25E599B80045CF6C /* EmployeeViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +66,7 @@
 		79C09DFC25E5911F0045CF6C /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		79C09E0125E591290045CF6C /* URLPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLPath.swift; sourceTree = "<group>"; };
 		79C09E0625E593760045CF6C /* URLSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSession.swift; sourceTree = "<group>"; };
+		79C09E0B25E599B80045CF6C /* EmployeeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -178,6 +180,7 @@
 			isa = PBXGroup;
 			children = (
 				79C09DED25E587590045CF6C /* EmployeeDataSource.swift */,
+				79C09E0B25E599B80045CF6C /* EmployeeViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -340,6 +343,7 @@
 				79C09DFD25E5911F0045CF6C /* NetworkError.swift in Sources */,
 				79C09DAB25E57D020045CF6C /* MooncascadeProject.xcdatamodeld in Sources */,
 				79C09E0225E591290045CF6C /* URLPath.swift in Sources */,
+				79C09E0C25E599B80045CF6C /* EmployeeViewModel.swift in Sources */,
 				79C09DEE25E587590045CF6C /* EmployeeDataSource.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
