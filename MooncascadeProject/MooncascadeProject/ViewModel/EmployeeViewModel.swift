@@ -15,6 +15,7 @@ class EmployeeViewModel {
     }
     private let networkManager = NetworkManager()
     private let contactManager = ContactManage()
+    private let employeeDAO = EmployeeDAO()
     
     func fetchEmployees() {
         employeesBackup.removeAll()
@@ -28,19 +29,28 @@ class EmployeeViewModel {
         employees = employeesBackup.filter { formattedText == $0 }
     }
     
-    private func fetchFrom(URL path: URLPath) {
+    
+}
+
+//MARK: - Network Request
+private extension EmployeeViewModel {
+    func fetchFrom(URL path: URLPath) {
         networkManager.request(urlPath: path, resposeType: Wrapper<Employee>.self) {  [weak self] result in
             switch result {
             case .success(let wrapper):
                 self?.employeesBackup.append(contentsOf: wrapper.items ?? [])
                 self?.matchContacts()
+                self?.saveEmployee()
             case .failure(let error):
                 self?.error = error
             }
         }
     }
-    
-    private func matchContacts() {
+}
+
+//MARK: - Contact Manager
+private extension EmployeeViewModel {
+    func matchContacts() {
         contactManager.fetchContacts { [weak self] result in
             switch result {
             case .success(let contacts):
@@ -55,6 +65,27 @@ class EmployeeViewModel {
             case .failure(let error):
                 self?.error = error
             }
+        }
+    }
+}
+
+//MARK: - Data Access Object
+extension EmployeeViewModel {
+    private func saveEmployee() {
+        do {
+            try employeeDAO.save(employees: employeesBackup)
+        } catch {
+            self.error = error
+        }
+    }
+    func retrieveEmployee() {
+        let result = employeeDAO.retrieve()
+        switch result {
+        case .success(let employees):
+            self.employeesBackup.removeAll()
+            self.employeesBackup = employees
+        case .failure(let error):
+            self.error = error
         }
     }
 }

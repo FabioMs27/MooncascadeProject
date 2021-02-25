@@ -13,6 +13,7 @@ enum Metrics: String {
     case refreshText       = "Refresh"
     case searchPlaceHolder = "Search Employees"
     case errorTitle        = "Error!"
+    case identifier        = "CashedData"
     
     var value: String { self.rawValue }
 }

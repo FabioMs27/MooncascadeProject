@@ -88,6 +88,7 @@ private extension ListViewController {
                     viewModel.fetchEmployees()
                 }
                 refreshControl.endRefreshing()
+                viewModel.retrieveEmployee()
             }
         }.store(in: &cancellables)
     }

@@ -10,7 +10,7 @@ import ContactsUI
 
 extension CNContact {
     var fullName: String {
-        "\(self.familyName) \(self.givenName)"
+        "\(givenName) \(familyName)"
     }
     
     func getContactView() -> CNContactViewController {
