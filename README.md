@@ -3,7 +3,7 @@
 iOS Sample project where you fetch employees from an API and match them with your phone's contacts.
 
 ## GIF
-![](https://media.giphy.com/media/j3NmZO88hF5BA2tGf1/giphy.gif)
+![](https://media.giphy.com/media/rRrkSOU6Ixgqw0U721/giphy.gif)
 
 ## HOW TO USE IT
   - Download and build.
