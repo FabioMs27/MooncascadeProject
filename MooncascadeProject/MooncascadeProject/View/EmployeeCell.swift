@@ -18,7 +18,7 @@ class EmployeeCell: UITableViewCell {
     var name = String() {
         willSet {
             nameLabel.text = newValue
-            setInitials(From: newValue)
+            initialsLabel.text = newValue.initials
         }
     }
     var phoneNumber: String? {
@@ -29,12 +29,5 @@ class EmployeeCell: UITableViewCell {
     }
     var hasContact = false {
         willSet { contactButton.isHidden = !newValue }
-    }
-    
-    private func setInitials(From fullName: String) {
-        let initials = fullName
-            .components(separatedBy: " ")
-            .reduce(into: String(), { $0 += String($1.first ?? Character("")) })
-        initialsLabel.text = initials
     }
 }

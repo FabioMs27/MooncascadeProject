@@ -10,12 +10,13 @@ import ContactsUI
 
 class DetailViewController: UIViewController {
     
+    @IBOutlet private weak var initialsLabel: UILabel!
     @IBOutlet private weak var fullNameLabel: UILabel!
     @IBOutlet private weak var emailLabel: UILabel!
     @IBOutlet private weak var phoneNumberLabel: UILabel!
     @IBOutlet private weak var positionLabel: UILabel!
     @IBOutlet private weak var projectsLabel: UILabel!
-    @IBOutlet weak var contactButton: UIButton!
+    @IBOutlet private weak var contactButton: UIButton!
     
     var fullname = String()
     var email = String()
@@ -27,6 +28,7 @@ class DetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         fullNameLabel.text = fullname
+        initialsLabel.text = fullname.initials
         emailLabel.text = email
         phoneNumberLabel.text = phoneNumber ?? "No phone number registered."
         positionLabel.text = position
@@ -35,7 +37,7 @@ class DetailViewController: UIViewController {
             formattedProjects.removeLast()
             formattedProjects.removeLast()
         }
-        projectsLabel.text = formattedProjects
+        projectsLabel.text = formattedProjects.isEmpty ? "No projects registered." : formattedProjects
         contactButton.isHidden = contact == nil ? true : false
     }
 
