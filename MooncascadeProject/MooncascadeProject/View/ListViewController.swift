@@ -38,57 +38,7 @@ class ListViewController: UIViewController {
               let destination = segue.destination as? DetailViewController else {
             return
         }
-        destination.fullname = employee.fullName
-        destination.email = employee.contactDetails.email
-        destination.phoneNumber = employee.contactDetails.phone
-        destination.position = employee.position
-        destination.projects = employee.projects ?? []
-        destination.contact = employee.contact
-    }
-    
-    private func setupRefreshControl() {
-        refreshControl.attributedTitle = NSAttributedString(string: "Refresh")
-        refreshControl.addTarget(self, action: #selector(self.refresh(_:)), for: .valueChanged)
-        refreshControl.beginRefreshing()
-        tableView.addSubview(refreshControl)
-    }
-    
-    private func setupSearchBar() {
-        let searchController = UISearchController(searchResultsController: nil)
-        searchController.searchBar.delegate = self
-        searchController.obscuresBackgroundDuringPresentation = false
-        searchController.searchBar.placeholder = "Search Employees"
-        navigationItem.searchController = searchController
-        definesPresentationContext = true
-    }
-    
-    private func bindViewModel() {
-        viewModel.$employees.sink { [weak self] employees in
-            self?.dataSource.update(Employees: employees)
-            self?.tableView.reloadData()
-            self?.refreshControl.endRefreshing()
-        }.store(in: &cancellables)
-        
-        viewModel.$error.sink { [showAlert, refreshControl] error in
-            if let message = error?.localizedDescription {
-                showAlert("Error!", message)
-                refreshControl.endRefreshing()
-            }
-        }.store(in: &cancellables)
-    }
-    
-    private func showAlert(title: String, message: String) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
-        let tryAgainAction = UIAlertAction(title: "Try again", style: .default) { [viewModel] _ in
-            viewModel.fetchEmployees()
-        }
-        
-        alert.addAction(tryAgainAction)
-        alert.addAction(cancelAction)
-        
-        present(alert, animated: true)
+        segue.forward(employee, to: destination)
     }
     
     @IBAction func showContactView(_ sender: UIButton) {
@@ -105,6 +55,42 @@ class ListViewController: UIViewController {
     
     @objc func refresh(_ sender: AnyObject) {
         viewModel.fetchEmployees()
+    }
+}
+
+//MARK: - Setups
+private extension ListViewController {
+    func setupRefreshControl() {
+        refreshControl.attributedTitle = NSAttributedString(string: Metrics.refreshText.value)
+        refreshControl.addTarget(self, action: #selector(self.refresh(_:)), for: .valueChanged)
+        refreshControl.beginRefreshing()
+        tableView.addSubview(refreshControl)
+    }
+    
+    func setupSearchBar() {
+        let searchController = UISearchController(searchResultsController: nil)
+        searchController.searchBar.delegate = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = Metrics.searchPlaceHolder.value
+        navigationItem.searchController = searchController
+        definesPresentationContext = true
+    }
+    
+    func bindViewModel() {
+        viewModel.$employees.sink { [weak self] employees in
+            self?.dataSource.update(Employees: employees)
+            self?.tableView.reloadData()
+            self?.refreshControl.endRefreshing()
+        }.store(in: &cancellables)
+        
+        viewModel.$error.sink { [showAlert, refreshControl, viewModel] error in
+            if let message = error?.localizedDescription {
+                showAlert(Metrics.errorTitle.value, message) {
+                    viewModel.fetchEmployees()
+                }
+                refreshControl.endRefreshing()
+            }
+        }.store(in: &cancellables)
     }
 }
 

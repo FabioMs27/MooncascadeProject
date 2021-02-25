@@ -29,6 +29,9 @@
 		79C09E1B25E64A790045CF6C /* CNContact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79C09E1A25E64A790045CF6C /* CNContact.swift */; };
 		79C09E2025E64B320045CF6C /* ContactManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79C09E1F25E64B320045CF6C /* ContactManager.swift */; };
 		79C09E2625E6868D0045CF6C /* ContactError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79C09E2525E6868D0045CF6C /* ContactError.swift */; };
+		79C09E2F25E779E80045CF6C /* Metrics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79C09E2E25E779E80045CF6C /* Metrics.swift */; };
+		79C09E3425E77C740045CF6C /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79C09E3325E77C740045CF6C /* UIViewController.swift */; };
+		79C09E3925E77F440045CF6C /* UIStoryBoardSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79C09E3825E77F440045CF6C /* UIStoryBoardSegue.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,6 +80,9 @@
 		79C09E1A25E64A790045CF6C /* CNContact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CNContact.swift; sourceTree = "<group>"; };
 		79C09E1F25E64B320045CF6C /* ContactManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactManager.swift; sourceTree = "<group>"; };
 		79C09E2525E6868D0045CF6C /* ContactError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactError.swift; sourceTree = "<group>"; };
+		79C09E2E25E779E80045CF6C /* Metrics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Metrics.swift; sourceTree = "<group>"; };
+		79C09E3325E77C740045CF6C /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
+		79C09E3825E77F440045CF6C /* UIStoryBoardSegue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIStoryBoardSegue.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -213,6 +219,9 @@
 				79C09E1525E649E00045CF6C /* String.swift */,
 				79C09E1A25E64A790045CF6C /* CNContact.swift */,
 				79C09E1F25E64B320045CF6C /* ContactManager.swift */,
+				79C09E2E25E779E80045CF6C /* Metrics.swift */,
+				79C09E3325E77C740045CF6C /* UIViewController.swift */,
+				79C09E3825E77F440045CF6C /* UIStoryBoardSegue.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -359,6 +368,7 @@
 				79C09E1125E63FBA0045CF6C /* DetailViewController.swift in Sources */,
 				79C09DA525E57D020045CF6C /* ListViewController.swift in Sources */,
 				79C09E1B25E64A790045CF6C /* CNContact.swift in Sources */,
+				79C09E3425E77C740045CF6C /* UIViewController.swift in Sources */,
 				79C09DA125E57D020045CF6C /* AppDelegate.swift in Sources */,
 				79C09E0725E593760045CF6C /* URLSession.swift in Sources */,
 				79C09E1625E649E00045CF6C /* String.swift in Sources */,
@@ -369,9 +379,11 @@
 				79C09DA325E57D020045CF6C /* SceneDelegate.swift in Sources */,
 				79C09DFD25E5911F0045CF6C /* NetworkError.swift in Sources */,
 				79C09DAB25E57D020045CF6C /* MooncascadeProject.xcdatamodeld in Sources */,
+				79C09E2F25E779E80045CF6C /* Metrics.swift in Sources */,
 				79C09E2625E6868D0045CF6C /* ContactError.swift in Sources */,
 				79C09E0225E591290045CF6C /* URLPath.swift in Sources */,
 				79C09E0C25E599B80045CF6C /* EmployeeViewModel.swift in Sources */,
+				79C09E3925E77F440045CF6C /* UIStoryBoardSegue.swift in Sources */,
 				79C09DEE25E587590045CF6C /* EmployeeDataSource.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
