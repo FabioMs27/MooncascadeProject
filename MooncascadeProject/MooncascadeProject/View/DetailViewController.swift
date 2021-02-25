@@ -31,7 +31,10 @@ class DetailViewController: UIViewController {
         phoneNumberLabel.text = phoneNumber ?? "No phone number registered."
         positionLabel.text = position
         var formattedProjects = projects.reduce(into: String(), { $0 += "\($01), " })
-        if !formattedProjects.isEmpty { formattedProjects.removeLast() }
+        if !formattedProjects.isEmpty {
+            formattedProjects.removeLast()
+            formattedProjects.removeLast()
+        }
         projectsLabel.text = formattedProjects
         contactButton.isHidden = contact == nil ? true : false
     }
