@@ -73,6 +73,9 @@
                                                         <constraint firstAttribute="height" constant="80" id="ZO1-Oj-KzK"/>
                                                         <constraint firstItem="6LC-VP-wKw" firstAttribute="centerX" secondItem="T0V-vj-Kpv" secondAttribute="centerX" id="bII-xe-xpq"/>
                                                     </constraints>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="rounded" value="YES"/>
+                                                    </userDefinedRuntimeAttributes>
                                                 </view>
                                                 <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AzC-aS-kwJ">
                                                     <rect key="frame" x="339" y="35" width="55" height="30"/>
@@ -80,6 +83,12 @@
                                                     <state key="normal" title="Contact">
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </state>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="rounded" value="YES"/>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                            <real key="value" value="5"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
                                                     <connections>
                                                         <action selector="showContactView:" destination="BYZ-38-t0r" eventType="touchUpInside" id="aWh-vj-peV"/>
                                                     </connections>
