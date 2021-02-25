@@ -16,7 +16,6 @@ class ListViewController: UIViewController {
     private var cancellables = Set<AnyCancellable>()
     private let refreshControl = UIRefreshControl()
 
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.dataSource = dataSource
