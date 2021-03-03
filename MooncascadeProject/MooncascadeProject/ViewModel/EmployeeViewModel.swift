@@ -57,7 +57,7 @@ private extension EmployeeViewModel {
                 guard let employees = self?.employeesBackup else { return }
                 for employee in employees {
                     if let contact = contacts.first(where: { employee == $0 }){
-                        if let index = employees.firstIndex(where: { employee.fullName == $0.fullName }) {
+                        if let index = employees.firstIndex(where: { employee == $0 }) {
                             self?.employeesBackup[index].contact = contact
                         }
                     }

@@ -32,7 +32,7 @@ class EmployeeDAO {
             }
             return .success(employees)
         } catch {
-            return .failure(DAOError.userDefaultsEmpty)
+            return .failure(DAOError.objectCouldntDecode)
         }
     }
 }
