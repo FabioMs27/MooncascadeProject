@@ -31,7 +31,7 @@ class NetworkManager {
             var request = URLRequest(url: url)
             request.httpMethod = "GET"
             
-            self?.session.dataTask(with: request) { [weak self] data, response, error in
+            self?.session.dataTask(With: request) { [weak self] data, response, error in
                 guard let self = self else { return }
                 
                 guard error == nil else {
