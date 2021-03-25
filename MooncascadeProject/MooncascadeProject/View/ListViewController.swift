@@ -33,7 +33,7 @@ class ListViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let indexPath = tableView.indexPathForSelectedRow,
-              let employee = dataSource.employee(From: indexPath),
+              let employee = dataSource.employee(from: indexPath),
               let destination = segue.destination as? DetailViewController else {
             return
         }
@@ -44,7 +44,7 @@ class ListViewController: UIViewController {
         let touchPoint = sender.convert(CGPoint(x: 0, y: 0), to: self.tableView)
         guard
             let indexPath = tableView.indexPathForRow(at: touchPoint),
-            let employee = dataSource.employee(From: indexPath),
+            let employee = dataSource.employee(from: indexPath),
             let contactViewController = employee.contact?.getContactView(),
             let navigationController = self.navigationController else {
             return
@@ -77,7 +77,7 @@ private extension ListViewController {
     
     func bindViewModel() {
         viewModel.$employees.sink { [weak self] employees in
-            self?.dataSource.update(Employees: employees)
+            self?.dataSource.update(employees: employees)
             self?.tableView.reloadData()
             self?.refreshControl.endRefreshing()
         }.store(in: &cancellables)

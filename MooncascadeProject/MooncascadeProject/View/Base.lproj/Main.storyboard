@@ -374,6 +374,7 @@
                                 <exclude reference="NUw-22-hd0"/>
                                 <exclude reference="pa9-jR-Ctt"/>
                                 <exclude reference="Ka8-Ww-Z1h"/>
+                                <exclude reference="UYD-nb-B5f"/>
                                 <exclude reference="2VE-C9-yU2"/>
                                 <exclude reference="Dnt-yv-ldy"/>
                                 <exclude reference="NAU-YR-pSK"/>
@@ -382,29 +383,28 @@
                                 <exclude reference="f8d-Ql-dY6"/>
                                 <exclude reference="nbQ-Ip-zvs"/>
                                 <exclude reference="yDt-o7-Y11"/>
-                                <exclude reference="UYD-nb-B5f"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=compact-widthClass=compact">
                             <mask key="constraints">
                                 <include reference="NUw-22-hd0"/>
+                                <include reference="UYD-nb-B5f"/>
                                 <include reference="2VE-C9-yU2"/>
                                 <include reference="NAU-YR-pSK"/>
                                 <include reference="Pgj-Ad-JJ5"/>
                                 <include reference="f8d-Ql-dY6"/>
                                 <include reference="nbQ-Ip-zvs"/>
-                                <include reference="UYD-nb-B5f"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=compact-widthClass=regular">
                             <mask key="constraints">
                                 <include reference="NUw-22-hd0"/>
+                                <include reference="UYD-nb-B5f"/>
                                 <include reference="2VE-C9-yU2"/>
                                 <include reference="NAU-YR-pSK"/>
                                 <include reference="Pgj-Ad-JJ5"/>
                                 <include reference="f8d-Ql-dY6"/>
                                 <include reference="nbQ-Ip-zvs"/>
-                                <include reference="UYD-nb-B5f"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">

@@ -66,8 +66,8 @@ extension ContactDetails: Codable {
     }
 }
 
-struct Wrapper<T: Decodable> {
-    let items: [T]?
+struct Wrapper<ModelType: Decodable> {
+    let items: ModelType?
 }
 
 extension Wrapper: Decodable {

@@ -15,6 +15,8 @@ class EmployeeCell: UITableViewCell {
     @IBOutlet private weak var phoneNumberLabel: UILabel!
     @IBOutlet private weak var contactButton: UIButton!
     
+    static let identifier = "EmployeeCell"
+    
     var name = String() {
         willSet {
             nameLabel.text = newValue

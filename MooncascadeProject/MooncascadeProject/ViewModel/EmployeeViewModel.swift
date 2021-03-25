@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Combine
 
 class EmployeeViewModel {
     @Published var employees = [Employee]()
@@ -13,7 +14,7 @@ class EmployeeViewModel {
     private var employeesBackup = [Employee]() {
         willSet { employees = newValue }
     }
-    private let networkManager = NetworkManager()
+    private var cancellationToken: AnyCancellable?
     private let contactManager = ContactManage()
     private let employeeDAO = EmployeeDAO()
     
@@ -35,16 +36,18 @@ class EmployeeViewModel {
 //MARK: - Network Request
 private extension EmployeeViewModel {
     func fetchFrom(URL path: URLPath) {
-        networkManager.request(urlPath: path, resposeType: Wrapper<Employee>.self) {  [weak self] result in
-            switch result {
-            case .success(let wrapper):
-                self?.employeesBackup.append(contentsOf: wrapper.items ?? [])
-                self?.matchContacts()
-                self?.saveEmployee()
-            case .failure(let error):
+        let apiRequest = APIRequest<[Employee]>()
+        cancellationToken = apiRequest.request(path: path)
+            .mapError { [weak self] (error) -> Error in
                 self?.error = error
+                return error
             }
-        }
+            .sink(
+                receiveCompletion: { _ in },
+                receiveValue: { [weak self] model in
+                    self?.employees = model
+                }
+            )
     }
 }
 

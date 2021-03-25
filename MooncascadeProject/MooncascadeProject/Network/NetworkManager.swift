@@ -6,77 +6,38 @@
 //
 
 import Foundation
+import Combine
 
-class NetworkManager {
-    
-    private let session: URLSessionProtocol
-    
-    init(session: URLSessionProtocol = URLSession.shared) {
-        self.session = session
-    }
-    
-    func request<ModelType: Decodable>(
-        urlPath: URLPath,
-        resposeType: ModelType.Type,
-        completion: @escaping (Result<ModelType, NetworkError>) -> Void) {
-        DispatchQueue.global(qos: .background).async { [weak self] in
-            
-            guard let url = urlPath.getURL() else {
-                DispatchQueue.main.async {
-                    completion(.failure(.invalidURL))
-                }
-                return
-            }
-            
-            var request = URLRequest(url: url)
-            request.httpMethod = "GET"
-            
-            self?.session.dataTask(With: request) { [weak self] data, response, error in
-                guard let self = self else { return }
-                
-                guard error == nil else {
-                    var networkError: NetworkError = .unknownError
-                    if error!.localizedDescription.uppercased().contains("OFFLINE") {
-                        networkError = .offline
-                    } else if error!.localizedDescription.uppercased().contains("UNSUPPORTED URL") {
-                        networkError = .unsupportedURL
-                    }
-                    DispatchQueue.main.async {
-                        completion(.failure(networkError))
-                    }
-                    return
-                }
-                
-                guard let httpResponse = response as? HTTPURLResponse,
-                      (200...299).contains(httpResponse.statusCode) else {
-                    DispatchQueue.main.async {
-                        completion(.failure(.connectionError))
-                    }
-                    return
-                }
-                
-                guard let mime = response?.mimeType, mime == "application/json" else {
-                    DispatchQueue.main.async {
-                        completion(.failure(.invalidResponseType))
-                    }
-                    return
-                }
-                DispatchQueue.main.async {
-                    guard
-                        let data = data,
-                        let object: ModelType = self.decode(data: data) else {
-                        completion(.failure(.objectNotDecoded))
-                        return
-                    }
-                    completion(.success(object))
-                }
-            }.resume()
+protocol NetworkRequest {
+    associatedtype ModelType: Decodable
+    func request(path: URLPath) -> AnyPublisher<ModelType, Error>
+    func decode(_ data: Data) throws -> ModelType
+}
+
+extension NetworkRequest {
+    func request(path: URLPath) -> AnyPublisher<ModelType, Error> {
+        guard let url = path.getURL() else {
+            fatalError("Invalid URL!")
         }
+        let urlRequest = URLRequest(url: url)
+        return URLSession.shared
+            .dataTaskPublisher(for: urlRequest)
+            .tryMap { result -> ModelType in
+                let value: ModelType = try self.decode(result.data)
+                return value
+            }
+            .receive(on: DispatchQueue.main)
+            .eraseToAnyPublisher()
     }
-    
-    private func decode<ModelType: Decodable>(data: Data) -> ModelType? {
+}
+
+struct APIRequest<ModelType: Decodable>: NetworkRequest {
+    func decode(_ data: Data) throws -> ModelType {
         let decoder = JSONDecoder()
-        guard let object = try? decoder.decode(ModelType.self, from: data) else { return nil }
-        return object
+        guard let wrapper = try? decoder.decode( Wrapper<ModelType>.self, from: data),
+              let items = wrapper.items else {
+            throw NetworkError.objectNotDecoded
+        }
+        return items
     }
 }
