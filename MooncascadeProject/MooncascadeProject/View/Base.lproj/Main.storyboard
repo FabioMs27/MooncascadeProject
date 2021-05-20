@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="5UK-RJ-AiU">
-                                <rect key="frame" x="0.0" y="140" width="414" height="722"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="EmployeeCell" rowHeight="100" id="Hgs-lb-umy" customClass="EmployeeCell" customModule="MooncascadeProject" customModuleProvider="target">
@@ -148,45 +148,61 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c5T-4P-aeF" userLabel="InitialsView">
-                                <rect key="frame" x="127" y="140" width="160" height="160"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="beO-U8-rXz" userLabel="Title Stack View">
+                                <rect key="frame" x="20" y="140" width="374" height="246.5"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EHE-22-ybk">
-                                        <rect key="frame" x="37" y="35" width="86" height="90"/>
-                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="75"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <nil key="highlightedColor"/>
-                                        <variation key="heightClass=regular-widthClass=regular">
-                                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="42"/>
-                                        </variation>
-                                    </label>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c5T-4P-aeF" userLabel="InitialsView">
+                                        <rect key="frame" x="107" y="0.0" width="160" height="160"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EHE-22-ybk">
+                                                <rect key="frame" x="37" y="35" width="86" height="90"/>
+                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="75"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                                <variation key="heightClass=regular-widthClass=regular">
+                                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="42"/>
+                                                </variation>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="160" id="6E0-Pg-DR5"/>
+                                            <constraint firstItem="EHE-22-ybk" firstAttribute="centerY" secondItem="c5T-4P-aeF" secondAttribute="centerY" id="dw4-JK-6Kz"/>
+                                            <constraint firstAttribute="width" constant="160" id="tLc-sF-jhz"/>
+                                            <constraint firstItem="EHE-22-ybk" firstAttribute="centerX" secondItem="c5T-4P-aeF" secondAttribute="centerX" id="vxP-id-2Be"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="rounded" value="YES"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="uPK-ca-Z4C" userLabel="Name Stack View">
+                                        <rect key="frame" x="52.5" y="176" width="269.5" height="70.5"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fabio Maciel de Sousa" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0cZ-0K-SwJ">
+                                                <rect key="frame" x="0.0" y="0.0" width="269.5" height="33.5"/>
+                                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                                <variation key="heightClass=regular-widthClass=regular">
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
+                                                </variation>
+                                            </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="918-1i-gv4">
+                                                <rect key="frame" x="0.0" y="40.5" width="269.5" height="30"/>
+                                                <state key="normal" title="Open contact"/>
+                                                <variation key="heightClass=regular-widthClass=regular">
+                                                    <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                                </variation>
+                                                <connections>
+                                                    <action selector="showContactView:" destination="ny1-Rf-VVn" eventType="touchUpInside" id="cJ4-oV-tke"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
                                 </subviews>
-                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstItem="EHE-22-ybk" firstAttribute="centerX" secondItem="c5T-4P-aeF" secondAttribute="centerX" id="Ygk-63-PWT"/>
-                                    <constraint firstAttribute="width" constant="160" id="dGJ-lJ-93b">
-                                        <variation key="heightClass=regular-widthClass=regular" constant="260"/>
-                                    </constraint>
-                                    <constraint firstItem="EHE-22-ybk" firstAttribute="centerY" secondItem="c5T-4P-aeF" secondAttribute="centerY" id="dz5-vU-Tzg"/>
-                                    <constraint firstAttribute="height" constant="160" id="ely-hi-vJg">
-                                        <variation key="heightClass=regular-widthClass=regular" constant="260"/>
-                                    </constraint>
-                                </constraints>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="rounded" value="YES"/>
-                                </userDefinedRuntimeAttributes>
-                            </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fabio Maciel de Sousa" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0cZ-0K-SwJ">
-                                <rect key="frame" x="72.5" y="316" width="269.5" height="33.5"/>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                                <variation key="heightClass=regular-widthClass=regular">
-                                    <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
-                                </variation>
-                            </label>
+                            </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="x84-ri-gzW" userLabel="Details Stack View">
-                                <rect key="frame" x="20" y="399.5" width="374" height="282"/>
+                                <rect key="frame" x="20" y="402.5" width="374" height="282"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="ksz-0t-MGj" userLabel="Email Stack View">
                                         <rect key="frame" x="0.0" y="0.0" width="374" height="61.5"/>
@@ -321,112 +337,82 @@
                                 </subviews>
                                 <variation key="heightClass=regular-widthClass=regular" spacing="32"/>
                             </stackView>
-                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j7N-x4-KgG">
-                                <rect key="frame" x="160" y="357.5" width="94" height="30"/>
-                                <state key="normal" title="Open contact"/>
-                                <variation key="heightClass=compact-widthClass=regular" hidden="YES"/>
-                                <variation key="heightClass=regular-widthClass=compact" hidden="YES"/>
-                                <variation key="heightClass=regular-widthClass=regular" hidden="YES">
-                                    <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                </variation>
-                                <connections>
-                                    <action selector="showContactView:" destination="ny1-Rf-VVn" eventType="touchUpInside" id="IA2-FW-TmS"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="cLA-cp-LEN"/>
                         <color key="backgroundColor" name="ContactColor"/>
                         <constraints>
-                            <constraint firstItem="j7N-x4-KgG" firstAttribute="top" secondItem="0cZ-0K-SwJ" secondAttribute="bottom" constant="8" id="0dK-Gb-rHX">
-                                <variation key="heightClass=regular-widthClass=regular" constant="18"/>
-                            </constraint>
-                            <constraint firstItem="j7N-x4-KgG" firstAttribute="centerX" secondItem="c5T-4P-aeF" secondAttribute="centerX" id="0mb-cj-awV"/>
-                            <constraint firstItem="x84-ri-gzW" firstAttribute="leading" secondItem="c5T-4P-aeF" secondAttribute="trailing" constant="50" id="2VE-C9-yU2"/>
-                            <constraint firstItem="c5T-4P-aeF" firstAttribute="top" secondItem="S57-Ig-fv2" secondAttribute="topMargin" id="6Jr-oX-l2m">
-                                <variation key="heightClass=compact-widthClass=compact" constant="40"/>
-                                <variation key="heightClass=compact-widthClass=regular" constant="40"/>
-                            </constraint>
-                            <constraint firstItem="0cZ-0K-SwJ" firstAttribute="centerX" secondItem="c5T-4P-aeF" secondAttribute="centerX" id="8RS-Ju-rk8"/>
+                            <constraint firstItem="beO-U8-rXz" firstAttribute="top" relation="greaterThanOrEqual" secondItem="cLA-cp-LEN" secondAttribute="top" id="3kv-IF-dWR"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="beO-U8-rXz" secondAttribute="trailing" id="5EP-bc-I1P"/>
                             <constraint firstItem="x84-ri-gzW" firstAttribute="leading" secondItem="S57-Ig-fv2" secondAttribute="leadingMargin" id="Dnt-yv-ldy"/>
-                            <constraint firstItem="0cZ-0K-SwJ" firstAttribute="left" relation="greaterThanOrEqual" secondItem="S57-Ig-fv2" secondAttribute="leftMargin" id="Iux-os-478"/>
-                            <constraint firstAttribute="rightMargin" relation="greaterThanOrEqual" secondItem="0cZ-0K-SwJ" secondAttribute="right" id="Ka8-Ww-Z1h"/>
                             <constraint firstAttribute="rightMargin" secondItem="x84-ri-gzW" secondAttribute="right" id="NAU-YR-pSK"/>
-                            <constraint firstItem="c5T-4P-aeF" firstAttribute="left" secondItem="S57-Ig-fv2" secondAttribute="leftMargin" constant="28" id="NUw-22-hd0"/>
-                            <constraint firstItem="0cZ-0K-SwJ" firstAttribute="top" secondItem="c5T-4P-aeF" secondAttribute="bottom" constant="16" id="PKX-IL-2Bc">
-                                <variation key="heightClass=regular-widthClass=regular" constant="45"/>
-                            </constraint>
                             <constraint firstItem="x84-ri-gzW" firstAttribute="top" relation="greaterThanOrEqual" secondItem="S57-Ig-fv2" secondAttribute="topMargin" id="Pgj-Ad-JJ5"/>
+                            <constraint firstItem="beO-U8-rXz" firstAttribute="leading" secondItem="S57-Ig-fv2" secondAttribute="leadingMargin" id="SOI-x8-H2f"/>
                             <constraint firstAttribute="rightMargin" secondItem="x84-ri-gzW" secondAttribute="right" id="UL0-Nr-T9U"/>
-                            <constraint firstAttribute="bottomMargin" secondItem="j7N-x4-KgG" secondAttribute="bottom" constant="12" id="UYD-nb-B5f"/>
+                            <constraint firstItem="x84-ri-gzW" firstAttribute="top" secondItem="beO-U8-rXz" secondAttribute="bottom" constant="16" id="b57-gC-sb6"/>
+                            <constraint firstItem="x84-ri-gzW" firstAttribute="leading" secondItem="beO-U8-rXz" secondAttribute="trailing" constant="50" id="dqP-Nr-Oaf"/>
+                            <constraint firstItem="beO-U8-rXz" firstAttribute="top" secondItem="S57-Ig-fv2" secondAttribute="topMargin" id="eIA-Rb-bPc"/>
                             <constraint firstItem="x84-ri-gzW" firstAttribute="centerY" secondItem="S57-Ig-fv2" secondAttribute="centerY" id="f8d-Ql-dY6"/>
+                            <constraint firstItem="beO-U8-rXz" firstAttribute="centerY" secondItem="S57-Ig-fv2" secondAttribute="centerY" constant="10" id="fah-jZ-ffp"/>
                             <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="x84-ri-gzW" secondAttribute="bottom" id="id3-fh-7i9"/>
-                            <constraint firstItem="x84-ri-gzW" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="0cZ-0K-SwJ" secondAttribute="trailing" constant="2" id="nbQ-Ip-zvs"/>
-                            <constraint firstItem="c5T-4P-aeF" firstAttribute="centerX" secondItem="S57-Ig-fv2" secondAttribute="centerX" id="pa9-jR-Ctt"/>
-                            <constraint firstItem="x84-ri-gzW" firstAttribute="top" secondItem="j7N-x4-KgG" secondAttribute="bottom" constant="12" id="yDt-o7-Y11">
-                                <variation key="heightClass=regular-widthClass=regular" constant="32"/>
-                            </constraint>
+                            <constraint firstItem="cLA-cp-LEN" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="beO-U8-rXz" secondAttribute="bottom" id="y3g-XL-dKl"/>
                         </constraints>
                         <directionalEdgeInsets key="directionalLayoutMargins" top="0.0" leading="20" bottom="0.0" trailing="20"/>
                         <variation key="default">
                             <mask key="constraints">
-                                <exclude reference="NUw-22-hd0"/>
-                                <exclude reference="pa9-jR-Ctt"/>
-                                <exclude reference="Ka8-Ww-Z1h"/>
-                                <exclude reference="UYD-nb-B5f"/>
-                                <exclude reference="2VE-C9-yU2"/>
+                                <exclude reference="y3g-XL-dKl"/>
+                                <exclude reference="3kv-IF-dWR"/>
+                                <exclude reference="5EP-bc-I1P"/>
+                                <exclude reference="eIA-Rb-bPc"/>
+                                <exclude reference="fah-jZ-ffp"/>
                                 <exclude reference="Dnt-yv-ldy"/>
                                 <exclude reference="NAU-YR-pSK"/>
                                 <exclude reference="Pgj-Ad-JJ5"/>
                                 <exclude reference="UL0-Nr-T9U"/>
+                                <exclude reference="b57-gC-sb6"/>
+                                <exclude reference="dqP-Nr-Oaf"/>
                                 <exclude reference="f8d-Ql-dY6"/>
-                                <exclude reference="nbQ-Ip-zvs"/>
-                                <exclude reference="yDt-o7-Y11"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=compact-widthClass=compact">
                             <mask key="constraints">
-                                <include reference="NUw-22-hd0"/>
-                                <include reference="UYD-nb-B5f"/>
-                                <include reference="2VE-C9-yU2"/>
                                 <include reference="NAU-YR-pSK"/>
                                 <include reference="Pgj-Ad-JJ5"/>
                                 <include reference="f8d-Ql-dY6"/>
-                                <include reference="nbQ-Ip-zvs"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=compact-widthClass=regular">
                             <mask key="constraints">
-                                <include reference="NUw-22-hd0"/>
-                                <include reference="UYD-nb-B5f"/>
-                                <include reference="2VE-C9-yU2"/>
+                                <include reference="y3g-XL-dKl"/>
+                                <include reference="3kv-IF-dWR"/>
+                                <include reference="fah-jZ-ffp"/>
                                 <include reference="NAU-YR-pSK"/>
                                 <include reference="Pgj-Ad-JJ5"/>
+                                <include reference="dqP-Nr-Oaf"/>
                                 <include reference="f8d-Ql-dY6"/>
-                                <include reference="nbQ-Ip-zvs"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
                             <mask key="constraints">
-                                <include reference="pa9-jR-Ctt"/>
-                                <include reference="Ka8-Ww-Z1h"/>
+                                <include reference="5EP-bc-I1P"/>
+                                <include reference="eIA-Rb-bPc"/>
                                 <include reference="Dnt-yv-ldy"/>
                                 <include reference="UL0-Nr-T9U"/>
-                                <include reference="yDt-o7-Y11"/>
+                                <include reference="b57-gC-sb6"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=regular">
                             <mask key="constraints">
-                                <include reference="pa9-jR-Ctt"/>
-                                <include reference="Ka8-Ww-Z1h"/>
+                                <include reference="5EP-bc-I1P"/>
+                                <include reference="eIA-Rb-bPc"/>
                                 <include reference="Dnt-yv-ldy"/>
                                 <include reference="UL0-Nr-T9U"/>
-                                <include reference="yDt-o7-Y11"/>
+                                <include reference="b57-gC-sb6"/>
                             </mask>
                         </variation>
                     </view>
                     <navigationItem key="navigationItem" id="1JT-89-fhu"/>
                     <connections>
-                        <outlet property="contactButton" destination="j7N-x4-KgG" id="sAF-PB-Kde"/>
+                        <outlet property="contactButton" destination="918-1i-gv4" id="8BE-9i-SCM"/>
                         <outlet property="emailLabel" destination="twO-wG-4J9" id="eLS-OI-ikY"/>
                         <outlet property="fullNameLabel" destination="0cZ-0K-SwJ" id="gte-3g-5Pa"/>
                         <outlet property="initialsLabel" destination="EHE-22-ybk" id="XjZ-Wb-1kz"/>
