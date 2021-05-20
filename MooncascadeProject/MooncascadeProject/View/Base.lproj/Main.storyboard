@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="5UK-RJ-AiU">
-                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                                <rect key="frame" x="0.0" y="140" width="414" height="722"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="EmployeeCell" rowHeight="100" id="Hgs-lb-umy" customClass="EmployeeCell" customModule="MooncascadeProject" customModuleProvider="target">
@@ -342,14 +342,12 @@
                             </constraint>
                             <constraint firstItem="j7N-x4-KgG" firstAttribute="centerX" secondItem="c5T-4P-aeF" secondAttribute="centerX" id="0mb-cj-awV"/>
                             <constraint firstItem="x84-ri-gzW" firstAttribute="leading" secondItem="c5T-4P-aeF" secondAttribute="trailing" constant="50" id="2VE-C9-yU2"/>
-                            <constraint firstAttribute="rightMargin" relation="greaterThanOrEqual" secondItem="j7N-x4-KgG" secondAttribute="right" id="3xQ-OC-3uN"/>
                             <constraint firstItem="c5T-4P-aeF" firstAttribute="top" secondItem="S57-Ig-fv2" secondAttribute="topMargin" id="6Jr-oX-l2m">
                                 <variation key="heightClass=compact-widthClass=compact" constant="40"/>
                                 <variation key="heightClass=compact-widthClass=regular" constant="40"/>
                             </constraint>
                             <constraint firstItem="0cZ-0K-SwJ" firstAttribute="centerX" secondItem="c5T-4P-aeF" secondAttribute="centerX" id="8RS-Ju-rk8"/>
                             <constraint firstItem="x84-ri-gzW" firstAttribute="leading" secondItem="S57-Ig-fv2" secondAttribute="leadingMargin" id="Dnt-yv-ldy"/>
-                            <constraint firstItem="j7N-x4-KgG" firstAttribute="left" relation="greaterThanOrEqual" secondItem="S57-Ig-fv2" secondAttribute="leftMargin" id="Dqy-f0-lVK"/>
                             <constraint firstItem="0cZ-0K-SwJ" firstAttribute="left" relation="greaterThanOrEqual" secondItem="S57-Ig-fv2" secondAttribute="leftMargin" id="Iux-os-478"/>
                             <constraint firstAttribute="rightMargin" relation="greaterThanOrEqual" secondItem="0cZ-0K-SwJ" secondAttribute="right" id="Ka8-Ww-Z1h"/>
                             <constraint firstAttribute="rightMargin" secondItem="x84-ri-gzW" secondAttribute="right" id="NAU-YR-pSK"/>

@@ -7,13 +7,11 @@
 
 import Foundation
 
-enum Metrics: String {
-    case cancelButton      = "Cancel"
-    case tryAgainButton    = "Try again"
-    case refreshText       = "Refresh"
-    case searchPlaceHolder = "Search Employees"
-    case errorTitle        = "Error!"
-    case identifier        = "CashedData"
-    
-    var value: String { self.rawValue }
+enum Metrics {
+    static let cancelButton      = "Cancel"
+    static let tryAgainButton    = "Try again"
+    static let refreshText       = "Refresh"
+    static let searchPlaceHolder = "Search Employees"
+    static let errorTitle        = "Error!"
+    static let identifier        = "CashedData"
 }

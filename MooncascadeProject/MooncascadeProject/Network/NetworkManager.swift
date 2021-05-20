@@ -7,6 +7,7 @@
 
 import Foundation
 import Combine
+import UIKit
 
 protocol NetworkRequest {
     associatedtype ModelType: Decodable
@@ -19,11 +20,14 @@ extension NetworkRequest {
         guard let url = path.getURL() else {
             fatalError("Invalid URL!")
         }
-        let urlRequest = URLRequest(url: url)
         return URLSession.shared
-            .dataTaskPublisher(for: urlRequest)
+            .dataTaskPublisher(for: url)
             .tryMap { result -> ModelType in
-                let value: ModelType = try self.decode(result.data)
+                guard let httpResponse = result.response as? HTTPURLResponse,
+                      httpResponse.statusCode == 200 else {
+                    throw NetworkError.invalidResponseType
+                }
+                let value: ModelType = try decode(result.data)
                 return value
             }
             .receive(on: DispatchQueue.main)
@@ -34,7 +38,7 @@ extension NetworkRequest {
 struct APIRequest<ModelType: Decodable>: NetworkRequest {
     func decode(_ data: Data) throws -> ModelType {
         let decoder = JSONDecoder()
-        guard let wrapper = try? decoder.decode( Wrapper<ModelType>.self, from: data),
+        guard let wrapper = try? decoder.decode(Wrapper<ModelType>.self, from: data),
               let items = wrapper.items else {
             throw NetworkError.objectNotDecoded
         }

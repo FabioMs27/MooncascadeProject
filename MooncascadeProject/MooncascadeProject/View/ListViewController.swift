@@ -32,9 +32,10 @@ class ListViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let indexPath = tableView.indexPathForSelectedRow,
-              let employee = dataSource.employee(from: indexPath),
-              let destination = segue.destination as? DetailViewController else {
+        guard
+            let indexPath = tableView.indexPathForSelectedRow,
+            let employee = dataSource.employee(from: indexPath),
+            let destination = segue.destination as? DetailViewController else {
             return
         }
         segue.forward(employee, to: destination)
@@ -51,17 +52,19 @@ class ListViewController: UIViewController {
         }
         navigationController.pushViewController(contactViewController, animated: true)
     }
-    
-    @objc func refresh(_ sender: AnyObject) {
-        viewModel.fetchEmployees()
-    }
 }
 
 //MARK: - Setups
 private extension ListViewController {
     func setupRefreshControl() {
-        refreshControl.attributedTitle = NSAttributedString(string: Metrics.refreshText.value)
-        refreshControl.addTarget(self, action: #selector(self.refresh(_:)), for: .valueChanged)
+        refreshControl.attributedTitle = Metrics.refreshText.atributedString
+        refreshControl.addAction(
+            UIAction { [viewModel, refreshControl] _ in
+                viewModel.fetchEmployees()
+                refreshControl.beginRefreshing()
+            },
+            for: .valueChanged
+        )
         refreshControl.beginRefreshing()
         tableView.addSubview(refreshControl)
     }
@@ -70,7 +73,7 @@ private extension ListViewController {
         let searchController = UISearchController(searchResultsController: nil)
         searchController.searchBar.delegate = self
         searchController.obscuresBackgroundDuringPresentation = false
-        searchController.searchBar.placeholder = Metrics.searchPlaceHolder.value
+        searchController.searchBar.placeholder = Metrics.searchPlaceHolder
         navigationItem.searchController = searchController
         definesPresentationContext = true
     }
@@ -84,7 +87,7 @@ private extension ListViewController {
         
         viewModel.$error.sink { [showAlert, refreshControl, viewModel] error in
             if let message = error?.localizedDescription {
-                showAlert(Metrics.errorTitle.value, message) {
+                showAlert(Metrics.errorTitle, message) {
                     viewModel.fetchEmployees()
                 }
                 refreshControl.endRefreshing()
@@ -97,6 +100,6 @@ private extension ListViewController {
 //MARK: - SearchBar Delegate
 extension ListViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        viewModel.filter(By: searchText)
+        viewModel.filter(by: searchText)
     }
 }

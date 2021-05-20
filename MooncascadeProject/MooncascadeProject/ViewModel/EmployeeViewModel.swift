@@ -7,6 +7,7 @@
 
 import Foundation
 import Combine
+import ContactsUI
 
 class EmployeeViewModel {
     @Published var employees = [Employee]()
@@ -18,34 +19,29 @@ class EmployeeViewModel {
     private let contactManager = ContactManage()
     private let employeeDAO = EmployeeDAO()
     
-    func fetchEmployees() {
-        employeesBackup.removeAll()
-        fetchFrom(URL: .tallinn)
-        fetchFrom(URL: .tartu)
-    }
-    
-    func filter(By searchText: String) {
+    func filter(by searchText: String) {
         if searchText.isEmpty { return }
         let formattedText = searchText.insensitiveCaseFormat
         employees = employeesBackup.filter { formattedText == $0 }
     }
-    
-    
 }
 
 //MARK: - Network Request
-private extension EmployeeViewModel {
-    func fetchFrom(URL path: URLPath) {
+extension EmployeeViewModel {
+    func fetchEmployees() {
         let apiRequest = APIRequest<[Employee]>()
-        cancellationToken = apiRequest.request(path: path)
+        let tallinn = apiRequest.request(path: .tallinn)
+        let tartu = apiRequest.request(path: .tartu)
+        cancellationToken = Publishers.Zip(tallinn, tartu)
             .mapError { [weak self] (error) -> Error in
                 self?.error = error
                 return error
             }
             .sink(
                 receiveCompletion: { _ in },
-                receiveValue: { [weak self] model in
-                    self?.employees = model
+                receiveValue: { [weak self] (tallinnMembers, tartuMembers) in
+                    self?.employeesBackup = tallinnMembers + tartuMembers
+                    self?.fetchContacts()
                 }
             )
     }
@@ -53,20 +49,20 @@ private extension EmployeeViewModel {
 
 //MARK: - Contact Manager
 private extension EmployeeViewModel {
-    func matchContacts() {
+    func fetchContacts() {
         contactManager.fetchContacts { [weak self] result in
             switch result {
             case .success(let contacts):
-                guard let employees = self?.employeesBackup else { return }
-                for employee in employees {
-                    if let contact = contacts.first(where: { employee == $0 }){
-                        if let index = employees.firstIndex(where: { employee == $0 }) {
-                            self?.employeesBackup[index].contact = contact
-                        }
-                    }
-                }
+                self?.matchEmployees(with: contacts)
             case .failure(let error):
                 self?.error = error
+            }
+        }
+    }
+    func matchEmployees(with contacts: [CNContact]) {
+        for (index, employee) in employeesBackup.enumerated() {
+            if let contact = contacts.first(where: { employee == $0 }) {
+                employeesBackup[index].contact = contact
             }
         }
     }

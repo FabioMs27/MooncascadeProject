@@ -16,7 +16,7 @@ class EmployeeDAO {
     func save(employees: [Employee]) throws {
         do {
             let data = try self.archive(objects: employees)
-            self.userDefaults.set(data, forKey: Metrics.identifier.value)
+            self.userDefaults.set(data, forKey: Metrics.identifier)
         } catch {
             throw DAOError.unnableToSave
         }
@@ -25,7 +25,7 @@ class EmployeeDAO {
     func retrieve() -> (Result<[Employee], Error>) {
         do {
             var employees = [Employee]()
-            if let data = userDefaults.data(forKey: Metrics.identifier.value){
+            if let data = userDefaults.data(forKey: Metrics.identifier){
                 if let savedEmployees: [Employee] = try unarchive(data: data) {
                     employees = savedEmployees
                 }

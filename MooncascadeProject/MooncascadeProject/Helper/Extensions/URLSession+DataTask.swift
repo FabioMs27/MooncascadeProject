@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Combine
 
 //MARK: - URLSession
 protocol URLSessionProtocol {
@@ -24,3 +25,11 @@ protocol URLSessionTaskProtocol {
 }
 
 extension URLSessionTask: URLSessionTaskProtocol { }
+
+protocol DataTaskPublisherProtocol {
+    func resume()
+}
+
+extension URLSession.DataTaskPublisher {
+    
+}

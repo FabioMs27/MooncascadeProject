@@ -118,13 +118,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		7999158625EF8AE200DEB8F1 /* Database */ = {
+		7999158625EF8AE200DEB8F1 /* DataStorage */ = {
 			isa = PBXGroup;
 			children = (
 				79C09E8B25E7FCFD0045CF6C /* EmployeeDAO.swift */,
 				79C09E1F25E64B320045CF6C /* ContactManager.swift */,
 			);
-			path = Database;
+			path = DataStorage;
 			sourceTree = "<group>";
 		};
 		79C09D9425E57D020045CF6C = {
@@ -152,7 +152,7 @@
 			children = (
 				79C09DD625E57D480045CF6C /* App */,
 				79C09DF225E590620045CF6C /* Network */,
-				7999158625EF8AE200DEB8F1 /* Database */,
+				7999158625EF8AE200DEB8F1 /* DataStorage */,
 				79C09DF325E5906C0045CF6C /* Helper */,
 				79C09DD825E57EA10045CF6C /* Model */,
 				79C09DD725E57D540045CF6C /* View */,
