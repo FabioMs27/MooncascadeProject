@@ -11,8 +11,8 @@ extension UIViewController {
     func showAlert(title: String, message: String, completion: @escaping () -> Void) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         
-        let cancelAction = UIAlertAction(title: Metrics.cancelButton.value, style: .cancel)
-        let tryAgainAction = UIAlertAction(title: Metrics.tryAgainButton.value, style: .default) { _ in
+        let cancelAction = UIAlertAction(title: Metrics.cancelButton, style: .cancel)
+        let tryAgainAction = UIAlertAction(title: Metrics.tryAgainButton, style: .default) { _ in
             completion()
         }
         

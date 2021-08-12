@@ -25,7 +25,7 @@ class ListViewController: UIViewController {
         let searchController = UISearchController(searchResultsController: nil)
         searchController.searchBar.delegate = self
         searchController.obscuresBackgroundDuringPresentation = false
-        searchController.searchBar.placeholder = Metrics.searchPlaceHolder.value
+        searchController.searchBar.placeholder = Metrics.searchPlaceHolder
         navigationItem.searchController = searchController
         definesPresentationContext = true
         return searchController
@@ -33,7 +33,7 @@ class ListViewController: UIViewController {
     
     private lazy var refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
-        refreshControl.attributedTitle = NSAttributedString(string: Metrics.refreshText.value)
+        refreshControl.attributedTitle = NSAttributedString(string: Metrics.refreshText)
         refreshControl.addAction(
             UIAction { [viewModel] _ in
                 viewModel.fetchEmployees()
@@ -61,9 +61,10 @@ class ListViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let indexPath = tableView.indexPathForSelectedRow,
-              let employee = dataSource.employee(From: indexPath),
-              let destination = segue.destination as? DetailViewController else {
+        guard
+            let indexPath = tableView.indexPathForSelectedRow,
+            let employee = dataSource.employee(from: indexPath),
+            let destination = segue.destination as? DetailViewController else {
             return
         }
         segue.forward(employee, to: destination)
@@ -90,7 +91,7 @@ private extension ListViewController {
     
     func showError(error: Error?) {
         if let message = error?.localizedDescription {
-            showAlert(title: Metrics.errorTitle.value, message: message) { [viewModel] in
+            showAlert(title: Metrics.errorTitle, message: message) { [viewModel] in
                 viewModel.fetchEmployees()
             }
             refreshControl.endRefreshing()

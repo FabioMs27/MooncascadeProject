@@ -9,7 +9,7 @@ import UIKit
 
 class EmployeeDataSource: NSObject {
     private var sections = [String: [Employee]]()
-    
+        
     private var positions: [String] {
         sections.keys.sorted()
     }
@@ -29,7 +29,7 @@ class EmployeeDataSource: NSObject {
                               by: { $0.position })
     }
     
-    func employee(From indexPath: IndexPath) -> Employee? {
+    func employee(from indexPath: IndexPath) -> Employee? {
         let position = self.positions[indexPath.section]
         return self.sections[position]?[indexPath.row]
     }

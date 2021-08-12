@@ -15,7 +15,6 @@ class EmployeeViewModel {
         willSet { employees = newValue }
     }
     private var cancellables = Set<AnyCancellable>()
-    private let networkManager = NetworkManager()
     private let contactManager: ContactLoading
     private let employeeDAO: DataStorage
     
@@ -23,13 +22,7 @@ class EmployeeViewModel {
         self.employeeDAO = employeeDAO
         self.contactManager = contactManager
     }
-    
-    func fetchEmployees() {
-        employeesBackup.removeAll()
-        fetchFrom(URL: .tallinn)
-        fetchFrom(URL: .tartu)
-    }
-    
+
     func filter(by searchText: String) {
         if searchText.isEmpty { return }
         let formattedText = searchText.insensitiveCaseFormat
@@ -38,18 +31,24 @@ class EmployeeViewModel {
 }
 
 //MARK: - Network Request
-private extension EmployeeViewModel {
-    func fetchFrom(URL path: URLPath) {
-        networkManager.request(urlPath: path, resposeType: Wrapper<Employee>.self) {  [weak self] result in
-            switch result {
-            case .success(let wrapper):
-                self?.employeesBackup.append(contentsOf: wrapper.items ?? [])
-                self?.fetchContacts()
-                self?.saveEmployee()
-            case .failure(let error):
+extension EmployeeViewModel {
+    func fetchEmployees() {
+        let apiRequest = APIRequest<[Employee]>()
+        let tallinn = apiRequest.request(path: .tallinn)
+        let tartu = apiRequest.request(path: .tartu)
+        Publishers.Zip(tallinn, tartu)
+            .mapError { [weak self] (error) -> Error in
                 self?.error = error
+                return error
             }
-        }
+            .sink(
+                receiveCompletion: { _ in },
+                receiveValue: { [weak self] (tallinnMembers, tartuMembers) in
+                    self?.employeesBackup = tallinnMembers + tartuMembers
+                    self?.fetchContacts()
+                }
+            )
+            .store(in: &cancellables)
     }
 }
 
@@ -64,18 +63,16 @@ private extension EmployeeViewModel {
                 case .finished: ()
                 }
             },
-            receiveValue: match(contacts:))
+            receiveValue: matchEmployees(with:))
             .store(in: &cancellables)
     }
     
-    func match(contacts: [CNContact]) {
-        employeesBackup
-            .enumerated()
-            .forEach { (index, employee) in
-                if let contact = contacts.first(where: { employee == $0 }) {
-                    employeesBackup[index].contact = contact
-                }
+    func matchEmployees(with contacts: [CNContact]) {
+        for (index, employee) in employeesBackup.enumerated() {
+            if let contact = contacts.first(where: { employee == $0 }) {
+                employeesBackup[index].contact = contact
             }
+        }
     }
 }
 

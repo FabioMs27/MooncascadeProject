@@ -41,7 +41,7 @@ extension ContactDetails: Codable {
 }
 
 struct Wrapper<T: Decodable> {
-    let items: [T]?
+    let items: T?
 }
 
 extension Wrapper: Decodable {

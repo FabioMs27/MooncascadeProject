@@ -21,6 +21,7 @@ class EmployeeCell: UITableViewCell {
     @IBOutlet private weak var contactButton: UIButton!
     
     weak var contactPresenter: ContactPresenterDelegate?
+    static let identifier = "EmployeeCell"
     
     var name = String() {
         willSet {
