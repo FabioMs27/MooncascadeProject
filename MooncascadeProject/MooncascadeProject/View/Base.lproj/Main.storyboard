@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="nL7-KT-kUo">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="nL7-KT-kUo">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -22,7 +22,7 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="EmployeeCell" rowHeight="100" id="Hgs-lb-umy" customClass="EmployeeCell" customModule="MooncascadeProject" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="100"/>
+                                        <rect key="frame" x="0.0" y="24.5" width="414" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Hgs-lb-umy" id="j81-Fe-SGN">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="100"/>
@@ -35,7 +35,7 @@
                                                             <rect key="frame" x="0.0" y="0.0" width="80" height="76"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FS" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6LC-VP-wKw">
-                                                                    <rect key="frame" x="24" y="21.5" width="32.5" height="33.5"/>
+                                                                    <rect key="frame" x="25.5" y="23" width="29" height="30"/>
                                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
                                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <nil key="highlightedColor"/>
@@ -96,7 +96,7 @@
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                     <connections>
-                                                        <action selector="showContactView:" destination="BYZ-38-t0r" eventType="touchUpInside" id="aWh-vj-peV"/>
+                                                        <action selector="pushToContactView:" destination="Hgs-lb-umy" eventType="touchUpInside" id="k5m-Qq-AWv"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
@@ -111,7 +111,7 @@
                                         </tableViewCellContentView>
                                         <directionalEdgeInsets key="directionalLayoutMargins" top="8" leading="8" bottom="8" trailing="8"/>
                                         <connections>
-                                            <outlet property="contactButton" destination="AzC-aS-kwJ" id="IJ6-f3-shJ"/>
+                                            <outlet property="contactButton" destination="AzC-aS-kwJ" id="sUF-AY-G6r"/>
                                             <outlet property="emailLabel" destination="tly-vQ-MWt" id="3bh-7e-eHz"/>
                                             <outlet property="initialsLabel" destination="6LC-VP-wKw" id="Hup-1N-hda"/>
                                             <outlet property="nameLabel" destination="K4b-7f-eUJ" id="Ulp-mh-hlM"/>
@@ -231,7 +231,7 @@
                                 </variation>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fabio Maciel de Sousa" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0cZ-0K-SwJ">
-                                <rect key="frame" x="72.5" y="316" width="269.5" height="33.5"/>
+                                <rect key="frame" x="87" y="316" width="240.5" height="30"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -240,7 +240,7 @@
                                 </variation>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="x84-ri-gzW" userLabel="Details Stack View">
-                                <rect key="frame" x="20" y="395.5" width="374" height="218"/>
+                                <rect key="frame" x="20" y="392" width="374" height="218"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="ksz-0t-MGj" userLabel="Email Stack View">
                                         <rect key="frame" x="0.0" y="0.0" width="374" height="45.5"/>
@@ -368,7 +368,7 @@
                                 <variation key="heightClass=regular-widthClass=regular" spacing="32"/>
                             </stackView>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j7N-x4-KgG">
-                                <rect key="frame" x="160" y="357.5" width="94" height="30"/>
+                                <rect key="frame" x="160" y="354" width="94" height="30"/>
                                 <state key="normal" title="Open contact"/>
                                 <variation key="heightClass=compact-widthClass=regular" hidden="YES"/>
                                 <variation key="heightClass=regular-widthClass=compact" hidden="YES"/>
@@ -429,6 +429,14 @@
                         <directionalEdgeInsets key="directionalLayoutMargins" top="0.0" leading="20" bottom="0.0" trailing="20"/>
                         <variation key="default">
                             <mask key="constraints">
+                                <exclude reference="12E-du-Myz"/>
+                                <exclude reference="6Jr-oX-l2m"/>
+                                <exclude reference="JXy-KL-f89"/>
+                                <exclude reference="NUw-22-hd0"/>
+                                <exclude reference="TB9-L9-L0Y"/>
+                                <exclude reference="VsP-pL-1ZO"/>
+                                <exclude reference="eaE-DR-J0M"/>
+                                <exclude reference="pa9-jR-Ctt"/>
                                 <exclude reference="8RS-Ju-rk8"/>
                                 <exclude reference="Ffc-7A-MFi"/>
                                 <exclude reference="GrE-FE-kni"/>
@@ -440,6 +448,14 @@
                                 <exclude reference="cuF-5M-ugz"/>
                                 <exclude reference="lcE-dl-5xG"/>
                                 <exclude reference="oKo-U4-LPk"/>
+                                <exclude reference="0dK-Gb-rHX"/>
+                                <exclude reference="0mb-cj-awV"/>
+                                <exclude reference="3xQ-OC-3uN"/>
+                                <exclude reference="5nO-FA-x0e"/>
+                                <exclude reference="9OF-Sg-AYb"/>
+                                <exclude reference="Dqy-f0-lVK"/>
+                                <exclude reference="j7g-Rt-rqm"/>
+                                <exclude reference="pCZ-nm-Ypa"/>
                                 <exclude reference="2VE-C9-yU2"/>
                                 <exclude reference="5q2-wu-dKU"/>
                                 <exclude reference="Dnt-yv-ldy"/>
@@ -455,29 +471,17 @@
                                 <exclude reference="id3-fh-7i9"/>
                                 <exclude reference="nbQ-Ip-zvs"/>
                                 <exclude reference="yDt-o7-Y11"/>
-                                <exclude reference="12E-du-Myz"/>
-                                <exclude reference="6Jr-oX-l2m"/>
-                                <exclude reference="JXy-KL-f89"/>
-                                <exclude reference="NUw-22-hd0"/>
-                                <exclude reference="TB9-L9-L0Y"/>
-                                <exclude reference="VsP-pL-1ZO"/>
-                                <exclude reference="eaE-DR-J0M"/>
-                                <exclude reference="pa9-jR-Ctt"/>
-                                <exclude reference="0dK-Gb-rHX"/>
-                                <exclude reference="0mb-cj-awV"/>
-                                <exclude reference="3xQ-OC-3uN"/>
-                                <exclude reference="5nO-FA-x0e"/>
-                                <exclude reference="9OF-Sg-AYb"/>
-                                <exclude reference="Dqy-f0-lVK"/>
-                                <exclude reference="j7g-Rt-rqm"/>
-                                <exclude reference="pCZ-nm-Ypa"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=compact-widthClass=regular">
                             <mask key="constraints">
+                                <include reference="JXy-KL-f89"/>
+                                <include reference="NUw-22-hd0"/>
                                 <include reference="8RS-Ju-rk8"/>
                                 <include reference="WCx-f5-eHd"/>
                                 <include reference="lcE-dl-5xG"/>
+                                <include reference="0dK-Gb-rHX"/>
+                                <include reference="pCZ-nm-Ypa"/>
                                 <include reference="2VE-C9-yU2"/>
                                 <include reference="5q2-wu-dKU"/>
                                 <include reference="NAU-YR-pSK"/>
@@ -485,45 +489,41 @@
                                 <exclude reference="aQn-d1-aU7"/>
                                 <include reference="f8d-Ql-dY6"/>
                                 <include reference="nbQ-Ip-zvs"/>
-                                <include reference="JXy-KL-f89"/>
-                                <include reference="NUw-22-hd0"/>
-                                <include reference="0dK-Gb-rHX"/>
-                                <include reference="pCZ-nm-Ypa"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
                             <mask key="constraints">
+                                <include reference="6Jr-oX-l2m"/>
+                                <include reference="pa9-jR-Ctt"/>
                                 <include reference="GrE-FE-kni"/>
                                 <include reference="Ka8-Ww-Z1h"/>
                                 <include reference="PKX-IL-2Bc"/>
                                 <include reference="oKo-U4-LPk"/>
-                                <include reference="NhL-UA-7Ux"/>
-                                <include reference="axD-wt-wGn"/>
-                                <include reference="yDt-o7-Y11"/>
-                                <include reference="6Jr-oX-l2m"/>
-                                <include reference="pa9-jR-Ctt"/>
                                 <include reference="0mb-cj-awV"/>
                                 <include reference="3xQ-OC-3uN"/>
                                 <include reference="5nO-FA-x0e"/>
                                 <include reference="Dqy-f0-lVK"/>
+                                <include reference="NhL-UA-7Ux"/>
+                                <include reference="axD-wt-wGn"/>
+                                <include reference="yDt-o7-Y11"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=regular">
                             <mask key="constraints">
-                                <include reference="Ffc-7A-MFi"/>
-                                <include reference="Iux-os-478"/>
-                                <include reference="Mw1-6C-zWc"/>
-                                <include reference="cuF-5M-ugz"/>
-                                <include reference="Dnt-yv-ldy"/>
-                                <include reference="GKj-Xa-wrk"/>
-                                <include reference="UL0-Nr-T9U"/>
-                                <include reference="id3-fh-7i9"/>
                                 <include reference="12E-du-Myz"/>
                                 <include reference="TB9-L9-L0Y"/>
                                 <exclude reference="VsP-pL-1ZO"/>
                                 <exclude reference="eaE-DR-J0M"/>
+                                <include reference="Ffc-7A-MFi"/>
+                                <include reference="Iux-os-478"/>
+                                <include reference="Mw1-6C-zWc"/>
+                                <include reference="cuF-5M-ugz"/>
                                 <include reference="9OF-Sg-AYb"/>
                                 <include reference="j7g-Rt-rqm"/>
+                                <include reference="Dnt-yv-ldy"/>
+                                <include reference="GKj-Xa-wrk"/>
+                                <include reference="UL0-Nr-T9U"/>
+                                <include reference="id3-fh-7i9"/>
                             </mask>
                         </variation>
                     </view>
@@ -569,7 +569,7 @@
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="ContactColor">
-            <color red="0.94916957619999998" green="0.94862657790000005" blue="0.96863085029999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+            <color red="0.94900000095367432" green="0.94900000095367432" blue="0.96899998188018799" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
         <systemColor name="secondaryLabelColor">
             <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>

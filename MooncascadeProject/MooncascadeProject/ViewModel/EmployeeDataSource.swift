@@ -14,20 +14,19 @@ class EmployeeDataSource: NSObject {
         sections.keys.sorted()
     }
     
+    private weak var contactPresenter: ContactPresenterDelegate?
+    
+    init(contactPresenter: ContactPresenterDelegate) {
+        self.contactPresenter = contactPresenter
+    }
+    
     func update(Employees employees: [Employee]) {
         sections.removeAll()
         let uniqueEmployees = employees
             .reduce(into: Set<Employee>(), { $0.insert($1) })
             .sorted(by: <)
-        for employee in uniqueEmployees {
-            let position = employee.position
-            if var employees = sections[position] {
-                employees.append(employee)
-                sections[position] = employees
-            } else {
-                sections[position] = [employee]
-            }
-        }
+        sections = Dictionary(grouping: uniqueEmployees,
+                              by: { $0.position })
     }
     
     func employee(From indexPath: IndexPath) -> Employee? {
@@ -38,11 +37,11 @@ class EmployeeDataSource: NSObject {
 
 extension EmployeeDataSource: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        return sections.count
+        sections.count
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return positions[section]
+        positions[section]
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -52,14 +51,16 @@ extension EmployeeDataSource: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let position = positions[indexPath.section]
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "EmployeeCell") as? EmployeeCell,
-              let employee = sections[position]?[indexPath.row] else {
+        guard
+            let cell = tableView.dequeueReusableCell(withIdentifier: "EmployeeCell") as? EmployeeCell,
+            let employee = sections[position]?[indexPath.row] else {
             fatalError("Employee cell isn't registered")
         }
         cell.name = employee.fullName
         cell.phoneNumber = employee.contactDetails.phone
         cell.email = employee.contactDetails.email
-        cell.hasContact = employee.contact == nil ? false : true
+        cell.contact = employee.contact
+        cell.contactPresenter = contactPresenter
         return cell
     }
 }

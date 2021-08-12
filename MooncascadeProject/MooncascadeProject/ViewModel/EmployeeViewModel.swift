@@ -5,7 +5,8 @@
 //  Created by Fábio Maciel de Sousa on 23/02/21.
 //
 
-import Foundation
+import Combine
+import ContactsUI
 
 class EmployeeViewModel {
     @Published var employees = [Employee]()
@@ -13,9 +14,15 @@ class EmployeeViewModel {
     private var employeesBackup = [Employee]() {
         willSet { employees = newValue }
     }
+    private var cancellables = Set<AnyCancellable>()
     private let networkManager = NetworkManager()
-    private let contactManager = ContactManage()
-    private let employeeDAO = EmployeeDAO()
+    private let contactManager: ContactLoading
+    private let employeeDAO: DataStorage
+    
+    init(employeeDAO: DataStorage, contactManager: ContactLoading) {
+        self.employeeDAO = employeeDAO
+        self.contactManager = contactManager
+    }
     
     func fetchEmployees() {
         employeesBackup.removeAll()
@@ -23,13 +30,11 @@ class EmployeeViewModel {
         fetchFrom(URL: .tartu)
     }
     
-    func filter(By searchText: String) {
+    func filter(by searchText: String) {
         if searchText.isEmpty { return }
         let formattedText = searchText.insensitiveCaseFormat
         employees = employeesBackup.filter { formattedText == $0 }
     }
-    
-    
 }
 
 //MARK: - Network Request
@@ -39,7 +44,7 @@ private extension EmployeeViewModel {
             switch result {
             case .success(let wrapper):
                 self?.employeesBackup.append(contentsOf: wrapper.items ?? [])
-                self?.matchContacts()
+                self?.fetchContacts()
                 self?.saveEmployee()
             case .failure(let error):
                 self?.error = error
@@ -50,22 +55,27 @@ private extension EmployeeViewModel {
 
 //MARK: - Contact Manager
 private extension EmployeeViewModel {
-    func matchContacts() {
-        contactManager.fetchContacts { [weak self] result in
-            switch result {
-            case .success(let contacts):
-                guard let employees = self?.employeesBackup else { return }
-                for employee in employees {
-                    if let contact = contacts.first(where: { employee == $0 }){
-                        if let index = employees.firstIndex(where: { employee.fullName == $0.fullName }) {
-                            self?.employeesBackup[index].contact = contact
-                        }
-                    }
+    func fetchContacts() {
+        contactManager.fetchContacts()
+            .sink(receiveCompletion: { completion in
+                switch completion {
+                case .failure(let error):
+                    self.error = error
+                case .finished: ()
                 }
-            case .failure(let error):
-                self?.error = error
+            },
+            receiveValue: match(contacts:))
+            .store(in: &cancellables)
+    }
+    
+    func match(contacts: [CNContact]) {
+        employeesBackup
+            .enumerated()
+            .forEach { (index, employee) in
+                if let contact = contacts.first(where: { employee == $0 }) {
+                    employeesBackup[index].contact = contact
+                }
             }
-        }
     }
 }
 
@@ -79,13 +89,17 @@ extension EmployeeViewModel {
         }
     }
     func retrieveEmployee() {
-        let result = employeeDAO.retrieve()
-        switch result {
-        case .success(let employees):
-            self.employeesBackup.removeAll()
-            self.employeesBackup = employees
-        case .failure(let error):
-            self.error = error
-        }
+        employeeDAO.retrieve()
+            .sink(receiveCompletion: { completion in
+                switch completion {
+                case .failure(let error):
+                    self.error = error
+                case .finished: ()
+                }
+            }, receiveValue: { employees in
+                self.employeesBackup.removeAll()
+                self.employeesBackup = employees
+            })
+            .store(in: &cancellables)
     }
 }

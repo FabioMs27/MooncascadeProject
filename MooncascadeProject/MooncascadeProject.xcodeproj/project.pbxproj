@@ -17,7 +17,7 @@
 		79C09DB025E57D040045CF6C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 79C09DAE25E57D040045CF6C /* LaunchScreen.storyboard */; };
 		79C09DBB25E57D040045CF6C /* MooncascadeProjectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79C09DBA25E57D040045CF6C /* MooncascadeProjectTests.swift */; };
 		79C09DC625E57D040045CF6C /* MooncascadeProjectUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79C09DC525E57D040045CF6C /* MooncascadeProjectUITests.swift */; };
-		79C09DDA25E57EB90045CF6C /* Employee.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79C09DD925E57EB80045CF6C /* Employee.swift */; };
+		79C09DDA25E57EB90045CF6C /* Employee+Wrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79C09DD925E57EB80045CF6C /* Employee+Wrapper.swift */; };
 		79C09DE825E585260045CF6C /* EmployeeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79C09DE725E585260045CF6C /* EmployeeCell.swift */; };
 		79C09DEE25E587590045CF6C /* EmployeeDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79C09DED25E587590045CF6C /* EmployeeDataSource.swift */; };
 		79C09DF525E590A50045CF6C /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79C09DF425E590A50045CF6C /* NetworkManager.swift */; };
@@ -35,6 +35,7 @@
 		79C09E3925E77F440045CF6C /* UIStoryBoardSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79C09E3825E77F440045CF6C /* UIStoryBoardSegue.swift */; };
 		79C09E3F25E7A96B0045CF6C /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79C09E3E25E7A96B0045CF6C /* UIView.swift */; };
 		79C09E8C25E7FCFE0045CF6C /* EmployeeDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79C09E8B25E7FCFD0045CF6C /* EmployeeDAO.swift */; };
+		F0131D1626C55ED5000EFA97 /* Comparable+Hashable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0131D1526C55ED5000EFA97 /* Comparable+Hashable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,7 +72,7 @@
 		79C09DC125E57D040045CF6C /* MooncascadeProjectUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MooncascadeProjectUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		79C09DC525E57D040045CF6C /* MooncascadeProjectUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MooncascadeProjectUITests.swift; sourceTree = "<group>"; };
 		79C09DC725E57D040045CF6C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		79C09DD925E57EB80045CF6C /* Employee.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Employee.swift; sourceTree = "<group>"; };
+		79C09DD925E57EB80045CF6C /* Employee+Wrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Employee+Wrapper.swift"; sourceTree = "<group>"; };
 		79C09DE725E585260045CF6C /* EmployeeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeCell.swift; sourceTree = "<group>"; };
 		79C09DED25E587590045CF6C /* EmployeeDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeDataSource.swift; sourceTree = "<group>"; };
 		79C09DF425E590A50045CF6C /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
@@ -89,6 +90,7 @@
 		79C09E3825E77F440045CF6C /* UIStoryBoardSegue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIStoryBoardSegue.swift; sourceTree = "<group>"; };
 		79C09E3E25E7A96B0045CF6C /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
 		79C09E8B25E7FCFD0045CF6C /* EmployeeDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeDAO.swift; sourceTree = "<group>"; };
+		F0131D1526C55ED5000EFA97 /* Comparable+Hashable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Comparable+Hashable.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -194,7 +196,8 @@
 		79C09DD825E57EA10045CF6C /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				79C09DD925E57EB80045CF6C /* Employee.swift */,
+				79C09DD925E57EB80045CF6C /* Employee+Wrapper.swift */,
+				F0131D1526C55ED5000EFA97 /* Comparable+Hashable.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -391,7 +394,7 @@
 				79C09E0725E593760045CF6C /* URLSession.swift in Sources */,
 				79C09E1625E649E00045CF6C /* String.swift in Sources */,
 				79C09E2025E64B320045CF6C /* ContactManager.swift in Sources */,
-				79C09DDA25E57EB90045CF6C /* Employee.swift in Sources */,
+				79C09DDA25E57EB90045CF6C /* Employee+Wrapper.swift in Sources */,
 				79C09DE825E585260045CF6C /* EmployeeCell.swift in Sources */,
 				79C09E3F25E7A96B0045CF6C /* UIView.swift in Sources */,
 				79C09DF525E590A50045CF6C /* NetworkManager.swift in Sources */,
@@ -403,6 +406,7 @@
 				79C09E2625E6868D0045CF6C /* ContactError.swift in Sources */,
 				79C09E0225E591290045CF6C /* URLPath.swift in Sources */,
 				79C09E0C25E599B80045CF6C /* EmployeeViewModel.swift in Sources */,
+				F0131D1626C55ED5000EFA97 /* Comparable+Hashable.swift in Sources */,
 				79C09E3925E77F440045CF6C /* UIStoryBoardSegue.swift in Sources */,
 				79C09DEE25E587590045CF6C /* EmployeeDataSource.swift in Sources */,
 			);

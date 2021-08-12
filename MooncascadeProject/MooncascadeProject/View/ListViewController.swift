@@ -11,17 +11,46 @@ import Combine
 class ListViewController: UIViewController {
     
     @IBOutlet private weak var tableView: UITableView!
-    private let viewModel = EmployeeViewModel()
-    private let dataSource = EmployeeDataSource()
+    private lazy var viewModel: EmployeeViewModel = {
+        EmployeeViewModel(employeeDAO: EmployeeDAO(),
+                          contactManager: ContactManager())
+    }()
     private var cancellables = Set<AnyCancellable>()
-    private let refreshControl = UIRefreshControl()
+    
+    private lazy var dataSource: EmployeeDataSource = {
+        EmployeeDataSource(contactPresenter: self)
+    }()
+    
+    private lazy var searchController: UISearchController = {
+        let searchController = UISearchController(searchResultsController: nil)
+        searchController.searchBar.delegate = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = Metrics.searchPlaceHolder.value
+        navigationItem.searchController = searchController
+        definesPresentationContext = true
+        return searchController
+    }()
+    
+    private lazy var refreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.attributedTitle = NSAttributedString(string: Metrics.refreshText.value)
+        refreshControl.addAction(
+            UIAction { [viewModel] _ in
+                viewModel.fetchEmployees()
+            },
+            for: .valueChanged)
+        refreshControl.beginRefreshing()
+        tableView.addSubview(refreshControl)
+        return refreshControl
+    }()
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.dataSource = dataSource
+        _ = refreshControl
+        _ = searchController
         bindViewModel()
-        setupRefreshControl()
-        setupSearchBar()
         viewModel.fetchEmployees()
     }
     
@@ -39,64 +68,46 @@ class ListViewController: UIViewController {
         }
         segue.forward(employee, to: destination)
     }
-    
-    @IBAction func showContactView(_ sender: UIButton) {
-        let touchPoint = sender.convert(CGPoint(x: 0, y: 0), to: self.tableView)
-        guard
-            let indexPath = tableView.indexPathForRow(at: touchPoint),
-            let employee = dataSource.employee(From: indexPath),
-            let contactViewController = employee.contact?.getContactView(),
-            let navigationController = self.navigationController else {
-            return
-        }
-        navigationController.pushViewController(contactViewController, animated: true)
-    }
-    
-    @objc func refresh(_ sender: AnyObject) {
-        viewModel.fetchEmployees()
-    }
 }
 
 //MARK: - Setups
 private extension ListViewController {
-    func setupRefreshControl() {
-        refreshControl.attributedTitle = NSAttributedString(string: Metrics.refreshText.value)
-        refreshControl.addTarget(self, action: #selector(self.refresh(_:)), for: .valueChanged)
-        refreshControl.beginRefreshing()
-        tableView.addSubview(refreshControl)
-    }
-    
-    func setupSearchBar() {
-        let searchController = UISearchController(searchResultsController: nil)
-        searchController.searchBar.delegate = self
-        searchController.obscuresBackgroundDuringPresentation = false
-        searchController.searchBar.placeholder = Metrics.searchPlaceHolder.value
-        navigationItem.searchController = searchController
-        definesPresentationContext = true
-    }
-    
     func bindViewModel() {
-        viewModel.$employees.sink { [weak self] employees in
-            self?.dataSource.update(Employees: employees)
-            self?.tableView.reloadData()
-            self?.refreshControl.endRefreshing()
-        }.store(in: &cancellables)
+        viewModel.$employees
+            .sink(receiveValue: updateView(employees:))
+            .store(in: &cancellables)
         
-        viewModel.$error.sink { [showAlert, refreshControl, viewModel] error in
-            if let message = error?.localizedDescription {
-                showAlert(Metrics.errorTitle.value, message) {
-                    viewModel.fetchEmployees()
-                }
-                refreshControl.endRefreshing()
-                viewModel.retrieveEmployee()
+        viewModel.$error
+            .sink(receiveValue: showError(error:))
+            .store(in: &cancellables)
+    }
+    
+    func updateView(employees: [Employee]) {
+        dataSource.update(Employees: employees)
+        tableView.reloadData()
+        refreshControl.endRefreshing()
+    }
+    
+    func showError(error: Error?) {
+        if let message = error?.localizedDescription {
+            showAlert(title: Metrics.errorTitle.value, message: message) { [viewModel] in
+                viewModel.fetchEmployees()
             }
-        }.store(in: &cancellables)
+            refreshControl.endRefreshing()
+            viewModel.retrieveEmployee()
+        }
+    }
+}
+
+extension ListViewController: ContactPresenterDelegate {
+    func pushToContactView(_ vc: UIViewController) {
+        navigationController?.pushViewController(vc, animated: true)
     }
 }
 
 //MARK: - SearchBar Delegate
 extension ListViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        viewModel.filter(By: searchText)
+        viewModel.filter(by: searchText)
     }
 }

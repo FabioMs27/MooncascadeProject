@@ -6,13 +6,22 @@
 //
 
 import Foundation
+import Combine
+
+protocol DataStorage {
+    func save(employees: [Employee]) throws
+    func retrieve() -> Future<[Employee], Error>
+}
 
 class EmployeeDAO {
     let userDefaults: UserDefaults
+    
     init(userDefaults: UserDefaults = UserDefaults.standard) {
         self.userDefaults = userDefaults
     }
-    
+}
+
+extension EmployeeDAO: DataStorage {
     func save(employees: [Employee]) throws {
         do {
             let data = try self.archive(objects: employees)
@@ -22,17 +31,18 @@ class EmployeeDAO {
         }
     }
     
-    func retrieve() -> (Result<[Employee], Error>) {
-        do {
-            var employees = [Employee]()
-            if let data = userDefaults.data(forKey: Metrics.identifier.value){
-                if let savedEmployees: [Employee] = try unarchive(data: data) {
+    func retrieve() -> Future<[Employee], Error> {
+        return Future<[Employee], Error> { [weak self] promise in
+            do {
+                var employees = [Employee]()
+                if let data = self?.userDefaults.data(forKey: Metrics.identifier.value),
+                   let savedEmployees: [Employee] = try self?.unarchive(data: data) {
                     employees = savedEmployees
                 }
+                return promise(.success(employees))
+            } catch {
+                return promise(.failure(DAOError.userDefaultsEmpty))
             }
-            return .success(employees)
-        } catch {
-            return .failure(DAOError.userDefaultsEmpty)
         }
     }
 }
