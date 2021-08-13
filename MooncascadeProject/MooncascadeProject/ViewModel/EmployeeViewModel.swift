@@ -5,7 +5,8 @@
 //  Created by Fábio Maciel de Sousa on 23/02/21.
 //
 
-import Foundation
+import Combine
+import ContactsUI
 
 class EmployeeViewModel {
     @Published var employees = [Employee]()
@@ -13,57 +14,63 @@ class EmployeeViewModel {
     private var employeesBackup = [Employee]() {
         willSet { employees = newValue }
     }
-    private let networkManager = NetworkManager()
-    private let contactManager = ContactManage()
-    private let employeeDAO = EmployeeDAO()
+    private var cancellables = Set<AnyCancellable>()
+    private let contactManager: ContactLoading
+    private let employeeDAO: DataStorage
     
-    func fetchEmployees() {
-        employeesBackup.removeAll()
-        fetchFrom(URL: .tallinn)
-        fetchFrom(URL: .tartu)
+    init(employeeDAO: DataStorage, contactManager: ContactLoading) {
+        self.employeeDAO = employeeDAO
+        self.contactManager = contactManager
     }
-    
-    func filter(By searchText: String) {
+
+    func filter(by searchText: String) {
         if searchText.isEmpty { return }
         let formattedText = searchText.insensitiveCaseFormat
         employees = employeesBackup.filter { formattedText == $0 }
     }
-    
-    
 }
 
 //MARK: - Network Request
-private extension EmployeeViewModel {
-    func fetchFrom(URL path: URLPath) {
-        networkManager.request(urlPath: path, resposeType: Wrapper<Employee>.self) {  [weak self] result in
-            switch result {
-            case .success(let wrapper):
-                self?.employeesBackup.append(contentsOf: wrapper.items ?? [])
-                self?.matchContacts()
-                self?.saveEmployee()
-            case .failure(let error):
+extension EmployeeViewModel {
+    func fetchEmployees() {
+        let apiRequest = APIRequest<[Employee]>()
+        let tallinn = apiRequest.request(path: .tallinn)
+        let tartu = apiRequest.request(path: .tartu)
+        Publishers.Zip(tallinn, tartu)
+            .mapError { [weak self] (error) -> Error in
                 self?.error = error
+                return error
             }
-        }
+            .sink(
+                receiveCompletion: { _ in },
+                receiveValue: { [weak self] (tallinnMembers, tartuMembers) in
+                    self?.employeesBackup = tallinnMembers + tartuMembers
+                    self?.fetchContacts()
+                }
+            )
+            .store(in: &cancellables)
     }
 }
 
 //MARK: - Contact Manager
 private extension EmployeeViewModel {
-    func matchContacts() {
-        contactManager.fetchContacts { [weak self] result in
-            switch result {
-            case .success(let contacts):
-                guard let employees = self?.employeesBackup else { return }
-                for employee in employees {
-                    if let contact = contacts.first(where: { employee == $0 }){
-                        if let index = employees.firstIndex(where: { employee.fullName == $0.fullName }) {
-                            self?.employeesBackup[index].contact = contact
-                        }
-                    }
+    func fetchContacts() {
+        contactManager.fetchContacts()
+            .sink(receiveCompletion: { completion in
+                switch completion {
+                case .failure(let error):
+                    self.error = error
+                case .finished: ()
                 }
-            case .failure(let error):
-                self?.error = error
+            },
+            receiveValue: matchEmployees(with:))
+            .store(in: &cancellables)
+    }
+    
+    func matchEmployees(with contacts: [CNContact]) {
+        for (index, employee) in employeesBackup.enumerated() {
+            if let contact = contacts.first(where: { employee == $0 }) {
+                employeesBackup[index].contact = contact
             }
         }
     }
@@ -79,13 +86,17 @@ extension EmployeeViewModel {
         }
     }
     func retrieveEmployee() {
-        let result = employeeDAO.retrieve()
-        switch result {
-        case .success(let employees):
-            self.employeesBackup.removeAll()
-            self.employeesBackup = employees
-        case .failure(let error):
-            self.error = error
-        }
+        employeeDAO.retrieve()
+            .sink(receiveCompletion: { completion in
+                switch completion {
+                case .failure(let error):
+                    self.error = error
+                case .finished: ()
+                }
+            }, receiveValue: { employees in
+                self.employeesBackup.removeAll()
+                self.employeesBackup = employees
+            })
+            .store(in: &cancellables)
     }
 }

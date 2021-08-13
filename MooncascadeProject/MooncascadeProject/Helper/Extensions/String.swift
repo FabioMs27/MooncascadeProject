@@ -18,4 +18,8 @@ extension String {
         return words
             .reduce(into: String(), { $0 += String($1.first ?? Character("")) })
     }
+    
+    var atributedString: NSAttributedString {
+        NSAttributedString(string: self)
+    }
 }
