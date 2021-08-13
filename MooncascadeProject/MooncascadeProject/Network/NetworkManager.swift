@@ -38,10 +38,10 @@ extension NetworkRequest {
 struct APIRequest<ModelType: Decodable>: NetworkRequest {
     func decode(_ data: Data) throws -> ModelType {
         let decoder = JSONDecoder()
-        guard let wrapper = try? decoder.decode(Wrapper<ModelType>.self, from: data),
-              let items = wrapper.items else {
-            throw NetworkError.objectNotDecoded
-        }
+        guard
+            let wrapper = try? decoder.decode(Wrapper<ModelType>.self, from: data),
+              let items = wrapper.items
+        else { throw NetworkError.objectNotDecoded }
         return items
     }
 }

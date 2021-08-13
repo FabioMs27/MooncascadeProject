@@ -33,7 +33,7 @@ extension EmployeeDAO: DataStorage {
     
 
     func retrieve() -> Future<[Employee], Error> {
-        return Future<[Employee], Error> { [weak self] promise in
+        return Future { [weak self] promise in
             do {
                 var employees = [Employee]()
                 if let data = self?.userDefaults.data(forKey: Metrics.identifier),

@@ -11,45 +11,43 @@ import Combine
 class ListViewController: UIViewController {
     
     @IBOutlet private weak var tableView: UITableView!
+    
     private lazy var viewModel: EmployeeViewModel = {
         EmployeeViewModel(employeeDAO: EmployeeDAO(),
                           contactManager: ContactManager())
     }()
-    private var cancellables = Set<AnyCancellable>()
-    
     private lazy var dataSource: EmployeeDataSource = {
         EmployeeDataSource(contactPresenter: self)
     }()
     
     private lazy var searchController: UISearchController = {
-        let searchController = UISearchController(searchResultsController: nil)
+        let searchController = UISearchController()
         searchController.searchBar.delegate = self
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = Metrics.searchPlaceHolder
-        navigationItem.searchController = searchController
-        definesPresentationContext = true
         return searchController
     }()
     
     private lazy var refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
-        refreshControl.attributedTitle = NSAttributedString(string: Metrics.refreshText)
+        refreshControl.attributedTitle = Metrics.refreshText.atributedString
         refreshControl.addAction(
             UIAction { [viewModel] _ in
                 viewModel.fetchEmployees()
             },
             for: .valueChanged)
         refreshControl.beginRefreshing()
-        tableView.addSubview(refreshControl)
         return refreshControl
     }()
-
+    
+    private var cancellables = Set<AnyCancellable>()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.dataSource = dataSource
-        _ = refreshControl
-        _ = searchController
+        tableView.addSubview(refreshControl)
+        navigationItem.searchController = searchController
+        definesPresentationContext = true
         bindViewModel()
         viewModel.fetchEmployees()
     }
@@ -71,7 +69,6 @@ class ListViewController: UIViewController {
     }
 }
 
-//MARK: - Setups
 private extension ListViewController {
     func bindViewModel() {
         viewModel.$employees
@@ -106,7 +103,6 @@ extension ListViewController: ContactPresenterDelegate {
     }
 }
 
-//MARK: - SearchBar Delegate
 extension ListViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         viewModel.filter(by: searchText)

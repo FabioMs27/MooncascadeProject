@@ -13,14 +13,18 @@ protocol ContactLoading {
 }
 
 class ContactManager: ContactLoading {
+    
+    private var fetchRequest: CNContactFetchRequest {
+        let keys = [CNContactFormatter.descriptorForRequiredKeys(for: .fullName), CNContactViewController.descriptorForRequiredKeys()]
+        return CNContactFetchRequest(keysToFetch: keys)
+    }
+    
     func fetchContacts() -> Future<[CNContact], Error> {
-        return Future { promise in
-            var contacts = [CNContact]()
-            let keys = [CNContactFormatter.descriptorForRequiredKeys(for: .fullName), CNContactViewController.descriptorForRequiredKeys()]
-            let request = CNContactFetchRequest(keysToFetch: keys)
-            let contactStore = CNContactStore()
+        return Future { [fetchRequest] promise in
             do {
-                try contactStore.enumerateContacts(with: request) {
+                var contacts = [CNContact]()
+                let contactStore = CNContactStore()
+                try contactStore.enumerateContacts(with: fetchRequest) {
                     (contact, stop) in
                     contacts.append(contact)
                 }
